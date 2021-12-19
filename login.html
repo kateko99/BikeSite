@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>BikeSite</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+</head>
+
+<body>
+    <script type="text/javascript" src="code.js"></script>
+    <nav class="navigation">
+        <div class="logo">
+            <div class="logo__img"><img class="logo__picture" src="/img/bike-logo.png"></div>
+            <div class="logo__text"></div>
+        </div>
+        <div class="menu">
+            <ul class="list">
+                <li class="list__el"><a href="index.html" class="list__link">Mapa</a>
+                <li class="list__el"><a class="list__link">Z trasy</a></li>
+                <li class="list__el"><a class="list__link">Ciekawostki</a></li>
+                <li class="list__el"><a class="list__link">O nas</a></li>
+                <li class="list__el"><a class="list__link">Moje konto</a></li>
+            </ul>
+        </div>
+        <div class="login">
+            <button class="button" onclick="location.href='login.html'"" type=" button">Zaloguj</button>
+            <button class="button" onclick="location.href='register.html'"">Zarejestruj</button>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="content__log">
+            <h2 class="header">Logowanie</h2>
+            <form class="form">
+                <label>Nazwa użytkownika</label>
+                <input class="form__input" name="username" type="text" required autofocus>
+                <label>Hasło</label>
+                <input class="form__input" name="password" type="password" required>
+                <div class="form__google">
+                    <p>Zaloguj z</p>
+                    <img class="form__icon" src="img/google.png">
+                </div>
+                <button type="submit" class="button button--login">Zaloguj</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
