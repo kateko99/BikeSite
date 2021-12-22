@@ -80,14 +80,57 @@ $(document).ready(function() {
         }
     }).addTo(mymap);
 
-    // Dodawanie i stylowanie warstwy granic
+    // Stylowanie warstw:
     var boundaryStyle = {
         "weight": 5,
         "fillOpacity": 0.15
     };
+    var cafeStyle = {
+    }
+    var castleStyle = {
+    }
+    var archeoStyle = {
+    }
+    var attractionStyle = {
+    }
+    var memorialStyle = {
+    }
+    var museumStyle = {
+    }
+    var restaurantStyle = {
+    }
+    var shopStyle = {
+    }
+
+    // Dodawanie warstw:
     lyrBoundary = L.geoJSON(wyzyna, {
         style: boundaryStyle
     }).addTo(mymap);
+    lyrCafe = L.geoJSON(cafe, {
+        style: cafeStyle
+    }).addTo(mymap);
+    lyrCastle = L.geoJSON(castle, {
+        style: castleStyle
+    }).addTo(mymap);
+    lyrArcheo = L.geoJSON(archeo, {
+        style: archeoStyle
+    }).addTo(mymap);
+    lyrAttraction = L.geoJSON(attraction, {
+        style: attractionStyle
+    }).addTo(mymap);
+    lyrMemorial = L.geoJSON(memorial, {
+        style: memorialStyle
+    }).addTo(mymap);
+    lyrMuseum = L.geoJSON(museum, {
+        style: museumStyle
+    }).addTo(mymap);
+    lyrRestaurant = L.geoJSON(restaurant, {
+        style: restaurantStyle
+    }).addTo(mymap);
+    lyrShop = L.geoJSON(shop, {
+        style: shopStyle
+    }).addTo(mymap);
+    
 
 
     // Tworzenie menu z warstwami
@@ -100,7 +143,15 @@ $(document).ready(function() {
 
     overlays = {
         "Granica Wyżyny" : lyrBoundary,
-        "Drogi" : roadsLayer
+        "Drogi" : roadsLayer,
+        "Kawiarnie" : lyrCafe,
+        "Zamki" : lyrCastle,
+        "Obiekty archeologiczne" : lyrArcheo,
+        "Obiekty pamięci" : lyrMemorial,
+        "Atrakcje" : lyrAttraction,
+        "Muzeum" : lyrMuseum,
+        "Restaurancje" : lyrRestaurant,
+        "Sklepy" : lyrShop
     }
 
     ctlLayers = L.control.layers(basemaps, overlays).addTo(mymap);
