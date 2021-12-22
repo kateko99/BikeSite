@@ -123,11 +123,17 @@ html, body {
 
 
 .tab__panel {
-    display: none;
+    transition: opacity 1s ease-out;
+    display: block;
+    opacity: 0;
+    height: 0;
+    overflow:hidden;
 } 
 
 .tab__panel.tab__active {
     display: block;
+    opacity: 1;
+    height: auto;
 
 } 
 
