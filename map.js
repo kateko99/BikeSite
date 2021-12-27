@@ -15,6 +15,9 @@ $(document).ready(function() {
 
     console.log(lyrImagery);
 
+    // Domyślny rozmiar danych wektorowych:
+    var vectorSize = 30;
+
     // Dodawanie i stylowanie wastwy dróg
 
     var roadsLayer = L.vectorGrid.slicer(drogi, {
@@ -87,6 +90,7 @@ $(document).ready(function() {
     };
 
     function cafeStyle(json, latlng) {
+
         var att = json.properties;
         var text;
         if(att.name === null) {
@@ -98,13 +102,13 @@ $(document).ready(function() {
         else {
             text = att.name;
         }
-        var cafeIcon = L.icon.mapkey({icon:"cafe",color:'white',background:'green',size:30});
-        return L.marker(latlng, {icon: cafeIcon}).bindTooltip("<h4>" + text + "</h4>");
+        var cafeIcon = L.icon.mapkey({icon:"",color:'white',background:'green',size: 30});
+        return L.marker(latlng, {icon: cafeIcon}).bindTooltip("<h4>" + text + "</h4>", {className: 'map__tooltip'});
     }
 
     function castleStyle(json, latlng) {
         var att = json.properties;
-        var castleIcon = L.icon.mapkey({icon:"castle",color:'white',background:'brown',size:30});
+        var castleIcon = L.icon.mapkey({icon:"castle",color:'white',background:'brown', size: 30});
         return L.marker(latlng, {icon: castleIcon}).bindTooltip("<h4>" + att.name + "</h4>");
     }
 
@@ -126,13 +130,13 @@ $(document).ready(function() {
         }
         if(att.name === null) {name = ""}
         else {name = att.name}
-        var archeoIcon = L.icon.mapkey({icon:"history",color:'white',background:'black',size:30});
+        var archeoIcon = L.icon.mapkey({icon:"ruins",color:'white',background:'black',size: 30});
         return L.marker(latlng, {icon: archeoIcon}).bindTooltip(type + "</br><h4>" + name + "</h4>");
     }
 
     function attractionStyle(json, latlng) {
         var att = json.properties;
-        var attractionIcon = L.icon.mapkey({icon:"attraction",color:'white',background:'orange',size:30});
+        var attractionIcon = L.icon.mapkey({icon:"windmill",color:'white',background:'orange', size: 30});
         var marker;
         if(att.name === null) {
             marker = L.marker(latlng, {icon: attractionIcon});
@@ -205,13 +209,13 @@ $(document).ready(function() {
 
     function toiletStyle(json, latlng) {
         var att = json.properties;
-        var toiletIcon = L.icon.mapkey({icon:"toilet",color:'white',background:'red',size:30});
+        var toiletIcon = L.icon.mapkey({icon:"toilet",color:'white',background:'red',size: 30});
         return L.marker(latlng, {icon: toiletIcon});
     }
 
     function touristStyle(json, latlng) {
         var att = json.properties;
-        var touristIcon = L.icon.mapkey({icon:"info",color:'white',background:'purple',size:30});
+        var touristIcon = L.icon.mapkey({icon:"info",color:'white',background:'purple',size: 30});
         return L.marker(latlng, {icon: touristIcon});
     }
     function towerStyle(json, latlng) {
@@ -219,7 +223,7 @@ $(document).ready(function() {
         var name;
         if(att.name === null) {name = ""}
         else {name = att.name}
-        var towerIcon = L.icon.mapkey({icon:"tower",color:'white',background:'brown',size:30});
+        var towerIcon = L.icon.mapkey({icon:"tower",color:'white',background:'brown',size: 30});
         return L.marker(latlng, {icon: towerIcon}).bindTooltip("Wieża" + "</br><h4>" + name + "</h4>");
     }
 
@@ -264,7 +268,6 @@ $(document).ready(function() {
     lyrTower = L.geoJSON(tower, {
         pointToLayer: towerStyle
     }).addTo(mymap);
-    
 
 
     // Tworzenie menu z warstwami

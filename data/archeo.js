@@ -3,7 +3,7 @@ var archeo = {
 "name": "archeo",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "osm_id": "120331996", "fclass": "ruins", "name": "Ruiny zamku kazimierzowskiego w Ojcowie" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.830677, 50.211981 ] ] } },
+{ "type": "Feature", "properties": { "osm_id": "120331996", "fclass": "ruins", "name": "Ruiny Zamku Kazimierzowskiego w Ojcowie" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.830677, 50.211981 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "235369881", "fclass": "fort", "name": "Fort 45a Bibice" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.948221, 50.12487 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "235370541", "fclass": "ruins", "name": null }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.941477, 50.12586 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "235370543", "fclass": "ruins", "name": null }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.942202, 50.125921 ] ] } },
@@ -16,9 +16,9 @@ var archeo = {
 { "type": "Feature", "properties": { "osm_id": "297961564", "fclass": "ruins", "name": "Zamek w Smoleniu" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.675406, 50.438353 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "298429967", "fclass": "ruins", "name": "Ruiny budynku przy Owczarni" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.503143, 50.175374 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "310784163", "fclass": "ruins", "name": null }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.366347, 50.081617 ] ] } },
-{ "type": "Feature", "properties": { "osm_id": "311891301", "fclass": "ruins", "name": "Pa?ac Szembek?w" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.567409, 50.053639 ] ] } },
+{ "type": "Feature", "properties": { "osm_id": "311891301", "fclass": "ruins", "name": "Pałac Szembeków" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.567409, 50.053639 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "312557148", "fclass": "fort", "name": "Fort 44 Tonie" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.897369, 50.124308 ] ] } },
-{ "type": "Feature", "properties": { "osm_id": "312558777", "fclass": "fort", "name": "Fort 44a P?kowice" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.904742, 50.123792 ] ] } },
+{ "type": "Feature", "properties": { "osm_id": "312558777", "fclass": "fort", "name": "Fort 44a Pękowice" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.904742, 50.123792 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "363520466", "fclass": "ruins", "name": "Ruiny pieca wapienniczego" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.598083, 50.002199 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "370399390", "fclass": "ruins", "name": "Zamek w Bydlinie" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.643027, 50.388731 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "5978875", "fclass": "ruins", "name": "Basteja" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.582247, 50.101667 ] ] } },
@@ -34,16 +34,16 @@ var archeo = {
 { "type": "Feature", "properties": { "osm_id": "893366587", "fclass": "archaeological", "name": "Szaniec IS V-1" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.937158, 50.113661 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "894376326", "fclass": "archaeological", "name": "Szaniec IS V-2" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.945214, 50.111391 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "894376888", "fclass": "archaeological", "name": "Bateria FB-V-1" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.933257, 50.122395 ] ] } },
-{ "type": "Feature", "properties": { "osm_id": "126989802", "fclass": "ruins", "name": "Ruiny Ko?cio?a ?wi?tego Stanis?awa" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.381949, 50.615016 ] ] } },
-{ "type": "Feature", "properties": { "osm_id": "166503737", "fclass": "ruins", "name": "Zesp?? pa?acowy w Wierbce" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.72497, 50.478026 ] ] } },
+{ "type": "Feature", "properties": { "osm_id": "126989802", "fclass": "ruins", "name": "Ruiny Kościoła Świętego Stanisława" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.381949, 50.615016 ] ] } },
+{ "type": "Feature", "properties": { "osm_id": "166503737", "fclass": "ruins", "name": "Zespół pałacowy w Wierbce" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.72497, 50.478026 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "166980912", "fclass": "ruins", "name": "Ruiny Zamku Olsztyn" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.273651, 50.748952 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "297961564", "fclass": "ruins", "name": "Zamek w Smoleniu" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.675406, 50.438353 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "450128158", "fclass": "archaeological", "name": "Osiedle Wa?y" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.41892, 50.692366 ] ] } },
-{ "type": "Feature", "properties": { "osm_id": "450128159", "fclass": "archaeological", "name": "Grodzisko ?redniowieczne" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.30072, 50.822117 ] ] } },
-{ "type": "Feature", "properties": { "osm_id": "450128160", "fclass": "archaeological", "name": "Grodzisko ?redniowieczne" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.233791, 50.823694 ] ] } },
-{ "type": "Feature", "properties": { "osm_id": "485393032", "fclass": "ruins", "name": "Ku?nia" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.274098, 50.748896 ] ] } },
+{ "type": "Feature", "properties": { "osm_id": "450128159", "fclass": "archaeological", "name": "Grodzisko Średniowieczne" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.30072, 50.822117 ] ] } },
+{ "type": "Feature", "properties": { "osm_id": "450128160", "fclass": "archaeological", "name": "Grodzisko Średniowieczne" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.233791, 50.823694 ] ] } },
+{ "type": "Feature", "properties": { "osm_id": "485393032", "fclass": "ruins", "name": "Kuźnia" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.274098, 50.748896 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "539027444", "fclass": "ruins", "name": null }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.173217, 50.803116 ] ] } },
 { "type": "Feature", "properties": { "osm_id": "682388521", "fclass": "ruins", "name": "Ruina wapiennika Pyrkosza" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.158331, 50.813294 ] ] } },
-{ "type": "Feature", "properties": { "osm_id": "904483318", "fclass": "ruins", "name": "Ruiny Stra?nicy" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.601924, 50.427592 ] ] } }
+{ "type": "Feature", "properties": { "osm_id": "904483318", "fclass": "ruins", "name": "Ruiny Strażnicy" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 19.601924, 50.427592 ] ] } }
 ]
 }
