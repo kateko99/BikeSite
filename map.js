@@ -85,65 +85,184 @@ $(document).ready(function() {
         "weight": 5,
         "fillOpacity": 0.15
     };
-    var cafeStyle = {
+
+    function cafeStyle(json, latlng) {
+        var att = json.properties;
+        var text;
+        if(att.name === null) {
+            var type;
+            if(att.fclass == 'bakery') {type = "Piekarnia"}
+            else {type="Kawiarnia"}
+            text = type;
+        }
+        else {
+            text = att.name;
+        }
+        var cafeIcon = L.icon.mapkey({icon:"cafe",color:'white',background:'green',size:30});
+        return L.marker(latlng, {icon: cafeIcon}).bindTooltip("<h4>" + text + "</h4>");
     }
-    var castleStyle = {
+
+    function castleStyle(json, latlng) {
+        var att = json.properties;
+        var castleIcon = L.icon.mapkey({icon:"castle",color:'white',background:'brown',size:30});
+        return L.marker(latlng, {icon: castleIcon}).bindTooltip("<h4>" + att.name + "</h4>");
     }
-    var archeoStyle = {
+
+    function archeoStyle(json, latlng) {
+        var att = json.properties;
+        var type, name;
+        switch(att.fclass){
+            case 'ruins':
+                type = "Ruiny";
+                break;
+            case 'fort':
+                type = "Fort"
+                break;
+            case 'archaeological':
+                type = "Zabytek archeologiczny"
+                break;
+            default:
+                type = ""
+        }
+        if(att.name === null) {name = ""}
+        else {name = att.name}
+        var archeoIcon = L.icon.mapkey({icon:"history",color:'white',background:'black',size:30});
+        return L.marker(latlng, {icon: archeoIcon}).bindTooltip(type + "</br><h4>" + name + "</h4>");
     }
-    var attractionStyle = {
+
+    function attractionStyle(json, latlng) {
+        var att = json.properties;
+        var attractionIcon = L.icon.mapkey({icon:"attraction",color:'white',background:'orange',size:30});
+        var marker;
+        if(att.name === null) {
+            marker = L.marker(latlng, {icon: attractionIcon});
+        }
+        else {
+            marker = L.marker(latlng, {icon: attractionIcon}).bindTooltip("<h4>"+ att.name +"</h4>")
+        }       
+        return marker;
     }
-    var memorialStyle = {
+
+    function memorialStyle(json, latlng) {
+        var att = json.properties;
+        var memorialIcon = L.icon.mapkey({icon:"memorial",color:'white',background:'yellow',size:30});
+        return L.marker(latlng, {icon: memorialIcon}).bindTooltip("<h4>" + att.name + "</h4>");
     }
-    var museumStyle = {
+
+    function museumStyle(json, latlng) {
+        var att = json.properties;
+        var name;
+        if(att.name === null) {name = ""}
+        else {name = att.name}
+        var museumIcon = L.icon.mapkey({icon:"museum",color:'white',background:'black',size:30});
+        return L.marker(latlng, {icon: museumIcon}).bindTooltip("Muzeum" + "</br><h4>" + name + "</h4>");
     }
-    var restaurantStyle = {
+    function restaurantStyle(json, latlng) {
+        var att = json.properties;
+        var type, name;
+        switch(att.fclass){
+            case 'restaurant':
+                type = "Restauracja";
+                break;
+            case 'fast_food':
+                type = "Fast-food"
+                break;
+            case 'bar':
+                type = "Bar"
+                break;
+            default:
+                type = ""
+        }
+        if(att.name === null) {name = ""}
+        else {name = att.name}
+        var restaurantIcon = L.icon.mapkey({icon:"restaurant",color:'white',background:'blue',size:30});
+        return L.marker(latlng, {icon: restaurantIcon}).bindTooltip(type + "</br><h4>" + name + "</h4>");
     }
-    var shopStyle = {
+    function shopStyle(json, latlng) {
+        var att = json.properties;
+        var type, name;
+        switch(att.fclass){
+            case 'supermarket':
+                type = "Supermarket";
+                break;
+            case 'mall':
+                type = "Centrum handlowe"
+                break;
+            case 'convenience':
+                type = "Sklep spożywczy"
+                break;
+            case 'market_place':
+                type = "Targowisko";
+                break;
+            default:
+                type = ""
+        }
+        if(att.name === null) {name = ""}
+        else {name = att.name}
+        var shopIcon = L.icon.mapkey({icon:"supermarket", color:'white',background:'pink',size:30});
+        return L.marker(latlng, {icon: shopIcon}).bindTooltip(type + "</br><h4>" + name + "</h4>");
     }
-    var toiletStyle = {
+
+    function toiletStyle(json, latlng) {
+        var att = json.properties;
+        var toiletIcon = L.icon.mapkey({icon:"toilet",color:'white',background:'red',size:30});
+        return L.marker(latlng, {icon: toiletIcon});
     }
-    var touristStyle = {
+
+    function touristStyle(json, latlng) {
+        var att = json.properties;
+        var touristIcon = L.icon.mapkey({icon:"info",color:'white',background:'purple',size:30});
+        return L.marker(latlng, {icon: touristIcon});
     }
-    var towerStyle = {
+    function towerStyle(json, latlng) {
+        var att = json.properties;
+        var name;
+        if(att.name === null) {name = ""}
+        else {name = att.name}
+        var towerIcon = L.icon.mapkey({icon:"tower",color:'white',background:'brown',size:30});
+        return L.marker(latlng, {icon: towerIcon}).bindTooltip("Wieża" + "</br><h4>" + name + "</h4>");
     }
+
+    // Funkcje OnEachFeture
+
 
     // Dodawanie warstw:
     lyrBoundary = L.geoJSON(wyzyna, {
         style: boundaryStyle
     }).addTo(mymap);
+    
     lyrCafe = L.geoJSON(cafe, {
-        style: cafeStyle
+        pointToLayer: cafeStyle,
     }).addTo(mymap);
     lyrCastle = L.geoJSON(castle, {
-        style: castleStyle
+        pointToLayer: castleStyle
     }).addTo(mymap);
     lyrArcheo = L.geoJSON(archeo, {
-        style: archeoStyle
+        pointToLayer: archeoStyle
     }).addTo(mymap);
     lyrAttraction = L.geoJSON(attraction, {
-        style: attractionStyle
+        pointToLayer: attractionStyle
     }).addTo(mymap);
     lyrMemorial = L.geoJSON(memorial, {
-        style: memorialStyle
+        pointToLayer: memorialStyle
     }).addTo(mymap);
     lyrMuseum = L.geoJSON(museum, {
-        style: museumStyle
+        pointToLayer: museumStyle
     }).addTo(mymap);
     lyrRestaurant = L.geoJSON(restaurant, {
-        style: restaurantStyle
+        pointToLayer: restaurantStyle
     }).addTo(mymap);
     lyrShop = L.geoJSON(shop, {
-        style: shopStyle
+        pointToLayer: shopStyle
     }).addTo(mymap);
     lyrToilet = L.geoJSON(toilet, {
-        style: toiletStyle
+        pointToLayer: toiletStyle
     }).addTo(mymap);
     lyrTourist = L.geoJSON(tourist_info, {
-        style: touristStyle
+        pointToLayer: touristStyle
     }).addTo(mymap);
     lyrTower = L.geoJSON(tower, {
-        style: towerStyle
+        pointToLayer: towerStyle
     }).addTo(mymap);
     
 

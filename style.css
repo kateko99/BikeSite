@@ -285,3 +285,11 @@ html, body {
     grid-row-start:6;
     margin:auto;
 }
+
+/* MAPA -> plik map.js  */
+
+.text__popup {
+    size: 20px;
+    font-family: 'Jockey One', sans-serif;
+    color: black;
+}
