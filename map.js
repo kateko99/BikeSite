@@ -101,6 +101,12 @@ $(document).ready(function() {
     }
     var shopStyle = {
     }
+    var toiletStyle = {
+    }
+    var touristStyle = {
+    }
+    var towerStyle = {
+    }
 
     // Dodawanie warstw:
     lyrBoundary = L.geoJSON(wyzyna, {
@@ -130,6 +136,15 @@ $(document).ready(function() {
     lyrShop = L.geoJSON(shop, {
         style: shopStyle
     }).addTo(mymap);
+    lyrToilet = L.geoJSON(toilet, {
+        style: toiletStyle
+    }).addTo(mymap);
+    lyrTourist = L.geoJSON(tourist_info, {
+        style: touristStyle
+    }).addTo(mymap);
+    lyrTower = L.geoJSON(tower, {
+        style: towerStyle
+    }).addTo(mymap);
     
 
 
@@ -151,7 +166,10 @@ $(document).ready(function() {
         "Atrakcje" : lyrAttraction,
         "Muzeum" : lyrMuseum,
         "Restaurancje" : lyrRestaurant,
-        "Sklepy" : lyrShop
+        "Sklepy" : lyrShop,
+        "Toalety" : lyrToilet,
+        "Informacja turystyczna" : lyrTourist,
+        "Wieża" : lyrTower
     }
 
     ctlLayers = L.control.layers(basemaps, overlays).addTo(mymap);
