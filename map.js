@@ -15,9 +15,6 @@ $(document).ready(function() {
 
     console.log(lyrImagery);
 
-    // Domyślny rozmiar danych wektorowych:
-    var vectorSize = 30;
-
     // Dodawanie i stylowanie wastwy dróg
 
     var roadsLayer = L.vectorGrid.slicer(drogi, {
@@ -82,6 +79,11 @@ $(document).ready(function() {
                 return feature.properties["fclass"]
         }
     }).addTo(mymap);
+
+
+    console.log("(l. 84) Drogi: ");
+    console.log(roadsLayer);
+
 
     // Stylowanie warstw:
     var boundaryStyle = {
@@ -231,6 +233,7 @@ $(document).ready(function() {
 
 
     // Dodawanie warstw:
+
     lyrBoundary = L.geoJSON(wyzyna, {
         style: boundaryStyle
     }).addTo(mymap);
@@ -238,6 +241,9 @@ $(document).ready(function() {
     lyrCafe = L.geoJSON(cafe, {
         pointToLayer: cafeStyle,
     }).addTo(mymap);
+    console.log("(l 117) Kawiarnie: ");
+    console.log(lyrCafe);
+
     lyrCastle = L.geoJSON(castle, {
         pointToLayer: castleStyle
     }).addTo(mymap);
@@ -296,11 +302,12 @@ $(document).ready(function() {
 
     ctlLayers = L.control.layers(basemaps, overlays).addTo(mymap);
 
+
     // Funkcja do wyświetlania dróg w zależności od zooma
     
     mymap.on('zoomend', function() {
         var zoomlevel = mymap.getZoom();
-        if(zoomlevel<12) {
+        if(zoomlevel<15) {
             if(mymap.hasLayer(roadsLayer)) 
             {
                 mymap.removeLayer(roadsLayer);
@@ -309,7 +316,7 @@ $(document).ready(function() {
                 console.log("The roads layer isn't active.")
             }
         }
-        if(zoomlevel >=12) {
+        if(zoomlevel >=15) {
             if(mymap.hasLayer(roadsLayer)) {
                 console.log("Layer is already active.");
             }
@@ -318,6 +325,22 @@ $(document).ready(function() {
             }
         }
     });
-    
+
+    // Rysowanie trasy
+
+    mymap.pm.addControls({  
+        position: 'topleft',  
+        drawCircleMarker: false,
+        drawMarker: false,
+        drawRectangle: false,
+        //drawPolygon: false,
+        drawCircle: false,
+        //snappingOption: true
+      }); 
+      
+      mymap.pm.enableDraw('Polygon', {
+        snappable: true,
+        snapDistance: 40,
+      });    
 });
 
