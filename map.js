@@ -86,7 +86,10 @@ $(document).ready(function() {
     // Stylowanie warstw:
     var boundaryStyle = {
         "weight": 5,
-        "fillOpacity": 0.15
+        "fillColor" : 'black',
+        "fillOpacity": 0.3,
+        "color" : "black",
+        "weight" : 2,
     };
 
     function cafeStyle(json, latlng) {
@@ -231,7 +234,7 @@ $(document).ready(function() {
 
 
     // Dodawanie warstw:
-    lyrBoundary = L.geoJSON(wyzyna, {
+    lyrBoundary = L.geoJSON(maska, {
         style: boundaryStyle
     }).addTo(mymap);
     
