@@ -7,12 +7,12 @@ $(document).ready(function() {
             drawCircleMarker: false,
             drawMarker: false,
             drawRectangle: false,
-            //drawPolygon: false,
+            drawPolygon: false,
             drawCircle: false,
             //snappingOption: true
         }); 
         
-        mymap.pm.enableDraw('Polygon', {
+        mymap.pm.enableDraw('Polyline', {
             snappable: true,
             snapDistance: 40,
         });    
@@ -26,7 +26,7 @@ $(document).ready(function() {
     mymap.on('pm:create', function({layer}) {
         console.log(layer);
         const geojs_layer = layer.toGeoJSON();
-        console.log(geojson);
+        console.log(geojs_layer);
 
         /*
         $.ajax({
