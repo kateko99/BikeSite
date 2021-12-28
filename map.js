@@ -326,21 +326,5 @@ $(document).ready(function() {
         }
     });
 
-    // Rysowanie trasy
-
-    mymap.pm.addControls({  
-        position: 'topleft',  
-        drawCircleMarker: false,
-        drawMarker: false,
-        drawRectangle: false,
-        //drawPolygon: false,
-        drawCircle: false,
-        //snappingOption: true
-      }); 
-      
-      mymap.pm.enableDraw('Polygon', {
-        snappable: true,
-        snapDistance: 40,
-      });    
 });
 
