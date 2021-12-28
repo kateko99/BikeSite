@@ -223,6 +223,20 @@ html, body {
     width: 150px;
 }
 
+
+/* Panel rysowania */ 
+
+.draw__form {
+    background-color: red;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+.draw__text {
+    margin: 15px;
+}
+
+
 /* LOG IN/REGISTER */
 
 .content__log {

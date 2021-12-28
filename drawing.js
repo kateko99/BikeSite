@@ -1,6 +1,8 @@
+const geojson;
+
 $(document).ready(function() {
     const draw_button = $('.draw__button');
-    const finish_button = $('.finish__button');
+    const save_button = $('.save__button');
     draw_button.on("click", function() { 
         mymap.pm.addControls({  
             position: 'topleft',  
@@ -17,28 +19,17 @@ $(document).ready(function() {
             snapDistance: 40,
         });    
     });
-    finish_button.on('click', function() {
-        mymap.pm.disableDraw();
-        mymap.pm.removeControls();
+    save_button.on('click', function(e) {
+        e.preventDefault();
+        var data = $('#form_route').serializeArray();
+        alert(JSON.stringify(data));
 
     });
 
     mymap.on('pm:create', function({layer}) {
         console.log(layer);
-        const geojs_layer = layer.toGeoJSON();
-        console.log(geojs_layer);
+        geojson = layer.toGeoJSON();
+        console.log(geojson);
+    });
 
-        /*
-        $.ajax({
-            url: "/Home/Login", // endpoint
-            type: "POST",
-            data: geojs_layer,
-            contentType: "application/json; charset=utf-8",
-            success: function (result) {
-                // success
-            },
-            error: function (errorData) { onError(errorData); }
-        });
-        */
-    })
 });
