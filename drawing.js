@@ -25,7 +25,20 @@ $(document).ready(function() {
 
     mymap.on('pm:create', function({layer}) {
         console.log(layer);
-        const geojson = layer.toGeoJSON();
+        const geojs_layer = layer.toGeoJSON();
         console.log(geojson);
+
+        /*
+        $.ajax({
+            url: "/Home/Login", // endpoint
+            type: "POST",
+            data: geojs_layer,
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                // success
+            },
+            error: function (errorData) { onError(errorData); }
+        });
+        */
     })
 });
