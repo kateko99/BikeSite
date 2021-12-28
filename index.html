@@ -3,25 +3,22 @@
 <head>
     <meta charset="utf-8">
     <title>BikeSite</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Dosis&family=Oooh+Baby&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="src/leaflet.css">
+
     <script src="src/leaflet-src.js"></script>
     <script src="src/jquery-3.6.0.min.js"></script>
     <script src="src/leaflet-providers.js"></script>
     <script src="src/leaflet.ajax.min.js"></script>
     <script src="src/leaflet-mapkey/L.Icon.Mapkey.js"></script>
     <link rel="stylesheet" href="src/leaflet-mapkey/MapkeyIcons.css"/>
-    <script src="src/speach-bubble/L.SpeechBubble.js"></script>
-    <link rel="stylesheet" href="src/speach-bubble/SpeechBubble.css"/> 
 
 
-    <script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
-    <script src="https://unpkg.com/esri-leaflet-vector@3/dist/esri-leaflet-vector.js"></script>
     <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.bundled.js"></script>
     <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.js"></script>
     <script src="data/drogi2.js"></script>
@@ -76,7 +73,6 @@
     </nav>
     <div class="content content--map">
         <div class="map" id="mapid">
-
         </div>
         <div class="panel">
             <ul class="tab">
@@ -139,8 +135,10 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="map.js"></script>
-        <script type="text/javascript" src="panel.js"></script>
+    </div>
+
+    <script type="text/javascript" src="map.js"></script>
+    <script type="text/javascript" src="panel.js"></script>
 </body>
 
 </html>
