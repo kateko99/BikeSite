@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\leaflet.css" />
+    <None Include="wwwroot\src\leaflet.css" />
     <None Include="wwwroot\src\jquery-3.6.0.js" />
     <None Include="wwwroot\src\jquery-3.6.0.min.js" />
     <None Include="wwwroot\src\leaflet-src.esm.js" />
