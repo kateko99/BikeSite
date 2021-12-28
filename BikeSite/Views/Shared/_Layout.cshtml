@@ -6,29 +6,49 @@
     <title>@ViewData["Title"] - BikeSite</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/leaflet.css">
-    <link rel="stylesheet" href="~/css/map.css">
-    <!-- <link rel="stylesheet" href="~/css/bootstrap.css">  -->
+    <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Dosis&family=Oooh+Baby&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/src/leaflet.css">
+
     <script src="~/src/leaflet-src.js"></script>
     <script src="~/src/jquery-3.6.0.min.js"></script>
-    <script src="~/src/leaflet.ajax.min.js"></script>
     <script src="~/src/leaflet-providers.js"></script>
-    <script src="~/js/drogi2.js"></script>
-    <script src="~/js/wyzyna.js"></script>
+    <script src="~/src/leaflet.ajax.min.js"></script>
+    <script src="~/src/leaflet-mapkey/L.Icon.Mapkey.js"></script>
+    <link rel="stylesheet" href="~/src/leaflet-mapkey/MapkeyIcons.css">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
-    <script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
-    <script src="https://unpkg.com/esri-leaflet-vector@3/dist/esri-leaflet-vector.js"></script>
+    <link rel="stylesheet" href="~/src/geoman/leaflet-geoman.css">
+    <script src="~/src/geoman/leaflet-geoman.min.js"></script>
+
     <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.bundled.js"></script>
     <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.js"></script>
 
+
+    <script src="~/js/layers/drogi2.js"></script>
+    <script src="~/js/layers/wyzyna.js"></script>
+    <script src="~/js/layers/cafe.js"></script>
+    <script src="~/js/layers/castle.js"></script>
+    <script src="~/js/layers/archeo.js"></script>
+    <script src="~/js/layers/attraction.js"></script>
+    <script src="~/js/layers/memorial.js"></script>
+    <script src="~/js/layers/museum.js"></script>
+    <script src="~/js/layers/restaurant.js"></script>
+    <script src="~/js/layers/shop.js"></script>
+    <script src="~/js/layers/toilet.js"></script>
+    <script src="~/js/layers/tourist_info.js"></script>
+    <script src="~/js/layers/tower.js"></script>
+    <script src="~/js/layers/maska.js"></script>
+
 </head>
 <body>
-    <header>
         <nav class="navigation">
             <div class="logo">
-                <div class="logo__img"><img class="logo__picture" src="/img/bike-logo.png"></div>
+                <div class="logo__img">
+                    <img class="logo__picture" src="/img/bike-logo.png">
+                </div>
                 <div class="logo__text"></div>
             </div>
             <div class="menu">
@@ -58,7 +78,7 @@
                 </div>
             }
         </nav>
-    </header>
+
     @RenderBody()
     <footer class="border-top footer text-muted">
         <div class="container">
