@@ -10,12 +10,7 @@ $(document).ready(function() {
             drawPolygon: false,
             drawCircle: false,
             //snappingOption: true
-        }); 
-        
-        mymap.pm.enableDraw('Polyline', {
-            snappable: true,
-            snapDistance: 40,
-        });    
+        });   
     });
     finish_button.on('click', function() {
         mymap.pm.disableDraw();

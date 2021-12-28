@@ -49,7 +49,15 @@
             <div class="search">
                 <h3 class="panel__header">Dodaj trasę</h3>
                 <button class="panel__button draw__button">Rysuj</button>
-                <button class="panel__button finish__button">Zakończ</button>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <button class="panel__button finish__button">Zapisz</button>
+                }
+                else
+                {
+                    <h4 style="color: red">Aby zapisać trasę, musisz być zalogowany.</h4>
+                }
+
                 <h3>Opis</h3>
                 <h2>Długość: </h2>
 
