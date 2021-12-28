@@ -6,34 +6,68 @@
     <div class="map" id="mapid">
     </div>
     <div class="panel">
-        <h3 class="panel__header">SZUKAJ trasy</h3>
-        <div class="search"></div>
-        <form>
-            <label class="search__header">Długość: </label></br>
-            <div class="search__options">
-                <button class="search__button" id="len" value="length-1"><30km</button>
-                <button class="search__button" id="len" value="length-2">31-50 km</button>
-                <button class="search__button" id="len" value="length-3">51-80 km</button>
-                <button class="search__button" id="len" value="length-4">81-100 km</button>
-                <button class="search__button" id="len" value="length-5">>100 km</button></br>
+        <ul class="tab">
+            <li class="tab__li tab__active"><a class="tab__header" href="#tab1">Szukaj</a></li>
+            <li class="tab__li"><a class="tab__header" href="#tab2">Dodaj</a></li>
+            <li class="tab__li"><a class="tab__header" href="#tab3">Trasa</a></li>
+        </ul>
+        <div class="tab__panel tab__active" id="tab1">
+            <div class="search">
+                <h3 class="panel__header">Szukaj trasy</h3>
+                <form>
+                    <label class="search__header">Długość: </label></br>
+                    <div class="search__options">
+                        <button class="search__button" id="len" value="length-1">
+                            <30km
+                        </button> <button class="search__button" id="len" value="length-2">
+                            31-50 km
+                        </button>
+                        <button class="search__button" id="len" value="length-3">51-80 km</button>
+                        <button class="search__button" id="len" value="length-4">81-100 km</button>
+                        <button class="search__button" id="len" value="length-5">>100 km</button></br>
+                    </div>
+                    <label class="search__header">Poziom trudności: </label></br>
+                    <div class="search__options">
+                        <button class="search__button">Łatwa</button>
+                        <button class="search__button">Średnia</button>
+                        <button class="search__button">Trudna</button></br>
+                    </div>
+                    <label class="search__header">Nawierzchnia: </label></br>
+                    <div class="search__options">
+                        <button class="search__button">Asfalt</button>
+                        <button class="search__button">Leśne ścieżki</button>
+                        <button class="search__button">Mieszana</button>
+                    </div>
+                    <div class="search_options search__options--submit">
+                        <img class="search__img" src="img/compass.png">
+                        <button class="search__button search__button--submit">Szukaj</button>
+                    </div>
+                </form>
             </div>
-            <label class="search__header">Poziom trudności: </label></br>
-            <div class="search__options">
-                <button class="search__button">Łatwa</button>
-                <button class="search__button">Średnia</button>
-                <button class="search__button">Trudna</button></br>
+        </div>
+        <div class="tab__panel" id="tab2">
+            <div class="search">
+                <h3 class="panel__header">Dodaj trasę</h3>
+                <button>Rysuj</button>
+                <h3>Opis</h3>
+
             </div>
-            <label class="search__header">Nawierzchnia: </label></br>
-            <div class="search__options">
-                <button class="search__button">Asfalt</button>
-                <button class="search__button">Leśne ścieżki</button>
-                <button class="search__button">Mieszana</button>
+        </div>
+        <div class="tab__panel" id="tab3">
+            <div class="search">
+                <h3 class="panel__header">Szczegóły trasy</h3>
+                <div>
+                    <h3 class="search__header">Długość trasy: </h3>
+                    <h3 class="search__header">Użytkownik: </h3>
+                    <h3 class="search__header">Przewyższenia: </h3>
+                    <h3 class="search__header">Typy nawierzchni: </h3>
+                    <h3 class="search__header">Opis:</h3>
+                    <h3 class="search__header">Komentarze:</h3>
+                </div>
+
             </div>
-            <div class="search_options search__options--submit">
-                <img class="search__img" src="img/compass.png">
-                <button class="search__button search__button--submit">Szukaj</button>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="~/js/map.js"></script>
+<script type="text/javascript" src="~/js/panel.js"></script>
