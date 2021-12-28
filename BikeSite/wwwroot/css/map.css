@@ -1,0 +1,248 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    height: 100%; /*dodane żeby obrazek w tle był na całym ekranie*/
+}
+/* NAVIGATION */
+
+.navigation {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 4fr 0.5fr 3fr;
+    justify-content: space-around;
+    border-bottom: 2px solid #bfbfbf;
+    box-shadow: 0 2px 2px -5px gainsboro;
+    /*cień jeszcze nie działa, trzeba to poprawić*/
+    padding-left: 4em;
+    background-color: gold;
+    font-size: 20px;
+    ;
+    font-family: 'Jockey One', sans-serif;
+    border-bottom: 1px solid rgb(64,48,23);
+}
+
+.logo__picture {
+    width: 80px;
+}
+
+.menu {
+    grid-column-start: 3;
+}
+
+.list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-self: center;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.list__el {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    width: 9em;
+    vertical-align: middle;
+}
+
+.list__link {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 15px;
+    color: black;
+}
+
+    .list__link:hover {
+        background-color: rgb(255,255,0,0.5);
+    }
+
+.login {
+    grid-column-start: 5;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.button {
+    width: 8em;
+    height: 3em;
+    border: 2px solid gray;
+}
+
+
+/* CONTENT */
+
+.content {
+    display: grid;
+    background-image: url("/img/log-background.jpg");
+    height: 100%; /*dodane żeby obrazek w tle był na całym ekranie*/
+}
+
+.content--map {
+    grid-template-columns: 3fr 1fr;
+}
+
+
+/* MAP PAGE */
+.map {
+    height: 100%;
+    background-color: green;
+}
+
+
+/* SEARCHING */
+
+.panel {
+    background-color: rgb(255,248,220);
+    border-left: 1px solid rgb(64,48,23);
+    padding: 20px;
+    font-family: 'Barlow', sans-serif;
+}
+
+.panel__header {
+    margin-top: 50px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+.search {
+    display: grid;
+    grid-template: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.search__header {
+    margin-bottom: 15px;
+}
+
+.search__options {
+    margin-bottom: 30px;
+}
+
+.search__options--submit {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.search__button {
+    width: 100px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 6px;
+    font-family: 'Barlow', sans-serif;
+}
+
+.search__button:hover {
+    background-color: #e5e0e0;
+}
+
+.search__button--submit {
+    width: 140px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.search__img {
+    width: 150px;
+}
+
+/* LOG IN/REGISTER */
+
+.content__log {
+    width: 40em;
+    height: 30em;
+    margin: 10em auto 0 auto;
+    border: 3px solid rgb(64,48,23);
+    border-radius: 10px;
+    padding: 1em 5em 2em 5em;
+    text-align: center;
+    background-color: cornsilk;
+}
+
+.content__log--register {
+    height: 35em;
+}
+
+.header {
+    margin-bottom: 3em;
+}
+
+.form {
+    display: grid;
+    grid-template: 1fr 1fr 1fr 1fr 1fr/1fr 1fr;
+    grid-row-gap: 1em;
+    /* margin: 10em auto 0 auto; /*tu można potem dodać w JS, żeby łapało wielkość ekranu i wyśrodkowywało" */
+    font-size: 18px;
+}
+
+.form__input {
+    height: 40px;
+}
+
+.form__google {
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    border: 2px solid rgb(0, 51, 0, 0.6);
+    border-radius: 10px;
+    grid-column: 1/ span 2;
+    width: 50%;
+    margin-left: 50px;
+    background-color: rgb(249,249,249)
+}
+
+.form__google:hover {
+    cursor: pointer;
+}
+
+.form__icon {
+    width: 80px;
+    align-self: center;
+    margin-left: 10px;
+}
+
+.form--register {
+    grid-template: 1fr 1fr 1fr 1fr 1fr 1fr/1fr 1fr;
+}
+
+.button--login {
+    grid-column-start: 2;
+    grid-row-start: 3;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.button--register {
+    grid-column-start: 2;
+    grid-row-start: 6;
+    margin: auto;
+}
+
+/* ARTICLES, OTHER PAGES */
+
+.header {
+    text-align:center;
+    margin-top: 50px;
+    margin-bottom:50px;
+}
+
+.account__container {
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:50px;
+}
