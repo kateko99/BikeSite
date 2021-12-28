@@ -206,7 +206,7 @@ html, body {
     justify-content: space-around;
 }
 
-.search__button {
+.panel__button {
     width: 100px;
     height: 35px;
     border: 1px solid black;
@@ -215,11 +215,11 @@ html, body {
     font-family: 'Barlow', sans-serif;
 }
 
-    .search__button:hover {
+    .panel__button:hover {
         background-color: #e5e0e0;
     }
 
-.search__button--submit {
+.panel__button--submit {
     width: 140px;
     height: 50px;
     font-size: 30px;
