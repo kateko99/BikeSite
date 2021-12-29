@@ -5,7 +5,8 @@
     <title>BikeSite</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Dosis&family=Oooh+Baby&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Dosis&family=Oooh+Baby&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
@@ -16,9 +17,9 @@
     <script src="src/leaflet-providers.js"></script>
     <script src="src/leaflet.ajax.min.js"></script>
     <script src="src/leaflet-mapkey/L.Icon.Mapkey.js"></script>
-    <link rel="stylesheet" href="src/leaflet-mapkey/MapkeyIcons.css"/>
- 
-    <link rel="stylesheet" href="src/geoman/leaflet-geoman.css"/> 
+    <link rel="stylesheet" href="src/leaflet-mapkey/MapkeyIcons.css" />
+
+    <link rel="stylesheet" href="src/geoman/leaflet-geoman.css" />
     <script src="src/geoman/leaflet-geoman.min.js"></script>
 
 
@@ -45,6 +46,9 @@
     <script src="src/Leaflet.draw.js"></script>
     <script src="src/leaflet.geometryutil.js"></script>
     <script src="src/leaflet.snap.js"></script>
+
+    <!-- Turf.JS -->
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
 
 </head>
 
@@ -120,8 +124,15 @@
                 <div class="search">
                     <h3 class="panel__header">Dodaj trasę</h3>
                     <div class="draw__start">
-                        <button class="panel__button panel__button--draw">Rysuj</button>
-                        <h4 class="panel__length">Długość trasy: </h4>
+                        <div>
+                            <p>Po kliknięciu przycisku Rysuj, po lewej stronie pojawi się przybornik do rysowania.
+                                Po zakończeniu trasy, naciśnij "Finish". Nazwa trasy jest obowiązkowa.
+                            </p>
+                        </div>
+                        <div>
+                            <button class="panel__button panel__button--draw">Rysuj</button>
+                            <h4 class="panel__length">Długość trasy: </h4>
+                        </div>
                     </div>
                     <form id="form_route">
                         <div class="draw__form">
@@ -130,35 +141,36 @@
                         </div>
                         <div class="draw__form">
                             <label class="draw__label">Opis</label>
-                            <textarea class="draw__text" id="description" name="description" rows="5", columns="80"></textarea></form>
-                        </div>
-                        <div class="draw__submit">
-                            <input type="checkbox" name="valid_ninja"> Dodaj trasę do ulubionych
-                            <button type="submit" class="panel__button panel__button--save">Zapisz</button>
-                        </div>
+                            <textarea class="draw__text" id="description" name="description" rows="5" ,
+                                columns="80"></textarea>
                     </form>
-                    
-
                 </div>
-            </div>
-            <div class="tab__panel" id="tab3">
-                <div class="search">
-                    <h3 class="panel__header">Szczegóły trasy</h3>
-                    <div>
-                        <h3 class="search__header">Długość trasy: </h3>
-                        <h3 class="search__header">Użytkownik: </h3>
-                        <h3 class="search__header">Przewyższenia: </h3>
-                        <h3 class="search__header">Typy nawierzchni: </h3>
-                        <h3 class="search__header">Opis:</h3>
-                        <h3 class="search__header">Komentarze:</h3>
-                    </div>
-
+                <div class="draw__submit">
+                    <input type="checkbox" name="favourite"> Dodaj trasę do ulubionych
+                    <button type="submit" class="panel__button panel__button--save">Zapisz</button>
                 </div>
+                </form>
+
             </div>
         </div>
-        <script type="text/javascript" src="map.js"></script>
-        <script type="text/javascript" src="panel.js"></script>
-        <script type="text/javascript", src="drawing.js"></script>
+        <div class="tab__panel" id="tab3">
+            <div class="search">
+                <h3 class="panel__header">Szczegóły trasy</h3>
+                <div>
+                    <h3 class="search__header">Długość trasy: </h3>
+                    <h3 class="search__header">Użytkownik: </h3>
+                    <h3 class="search__header">Przewyższenia: </h3>
+                    <h3 class="search__header">Typy nawierzchni: </h3>
+                    <h3 class="search__header">Opis:</h3>
+                    <h3 class="search__header">Komentarze:</h3>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="map.js"></script>
+    <script type="text/javascript" src="panel.js"></script>
+    <script type="text/javascript" , src="drawing.js"></script>
 </body>
 
 </html>

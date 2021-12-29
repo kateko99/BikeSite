@@ -6,7 +6,7 @@ let lyrBoundary;
 let basemaps, overlays;
     
 $(document).ready(function() {
-    mymap = L.map('mapid', {center: [50.2071, 19.8290], zoom: 12, minZoom: 9});
+    mymap = L.map('mapid', {center: [50.2071, 19.8120], zoom: 13, minZoom: 9});
     lyrOSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
     lyrTopo = L.tileLayer.provider('OpenTopoMap');
     lyrImagery = L.tileLayer.provider('Esri.WorldImagery');
