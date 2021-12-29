@@ -1,9 +1,11 @@
 ﻿using BikeSite.Data;
+using BikeSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+
 
 namespace BikeSite.Services
 {
@@ -66,6 +68,22 @@ namespace BikeSite.Services
             appUser.Lastname = claims.GetClaim(ClaimTypes.Surname);
 
             var entity = _context.AppUsers.Add(appUser);
+            _context.SaveChanges();
+            return entity.Entity;
+        }
+
+        internal Route AddNewRoute(Route route)  //tu dodać argumenty
+        {
+            var new_route = new Route();
+            int max_id = _context.Routes.Max(x => x.UserId);
+            new_route.RouteId = max_id + 1;
+            new_route.Name = route.Name;
+            new_route.Geometry = route.Geometry;
+            new_route.Description = route.Description;
+            new_route.Date = route.Date;
+            new_route.Type = "type";
+
+            var entity = _context.Routes.Add(new_route);
             _context.SaveChanges();
             return entity.Entity;
         }

@@ -57,8 +57,24 @@ namespace BikeSite.Data
                 entity.HasKey(e => e.RouteId);
                 entity.Property(e => e.RouteId);
                 entity.Property(e => e.UserId);
+                entity.Property(e => e.Name);
+                entity.Property(e => e.Geometry);
+                entity.Property(e => e.Description);
+                entity.Property(e => e.Type);
                 entity.Property(e => e.Length);
                 entity.Property(e => e.Date);
+
+                entity.HasData(new Route
+                {
+                    RouteId = 2,
+                    UserId = 2,
+                    Name = "pierwsza trasa",
+                    Geometry = "geometria startowa",
+                    Description = "opis trasy",
+                    Type = "leśna",
+                    Length = 100,
+                    Date = DateTime.Now,
+                });
             });
 
             modelBuilder.Entity<Comment>(entity =>
