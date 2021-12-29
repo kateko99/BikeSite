@@ -115,7 +115,7 @@ namespace BikeSite.Controllers
             string user_nameid = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var user = _userService.GetUserByIdProvider(user_nameid);
             route_data.UserId = user.UserId;
-            var newroute = _userService.AddNewRoute(route_data);  
+            _userService.AddNewRoute(route_data);  
                 string message = "SUCCESS";
                 return Json(new { Message = message });
         }

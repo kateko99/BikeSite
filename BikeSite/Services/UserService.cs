@@ -75,7 +75,7 @@ namespace BikeSite.Services
         internal Route AddNewRoute(Route route)  //tu dodać argumenty
         {
             var new_route = new Route();
-            int max_id = _context.Routes.Max(x => x.UserId);
+            int max_id = _context.Routes.Max(x => x.RouteId);
             new_route.RouteId = max_id + 1;
             new_route.Name = route.Name;
             new_route.Geometry = route.Geometry;
