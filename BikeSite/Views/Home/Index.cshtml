@@ -48,19 +48,29 @@
         <div class="tab__panel" id="tab2">
             <div class="search">
                 <h3 class="panel__header">Dodaj trasę</h3>
-                <button class="panel__button draw__button">Rysuj</button>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <button class="panel__button finish__button">Zapisz</button>
-                }
-                else
-                {
-                    <h4 style="color: red">Aby zapisać trasę, musisz być zalogowany.</h4>
-                }
 
-                <h3>Opis</h3>
-                <h2>Długość: </h2>
-
+                <div class="draw__start">
+                    <button class="panel__button panel__button--draw">Rysuj</button>
+                    <h4 class="panel__length">Długość trasy: </h4>
+                </div>
+                <form id="form_route">
+                    <div class="draw__form">
+                        <label class="draw__label">Nazwa</label>
+                        <input class="draw__input" id="route_name" name="name">
+                    </div>
+                    <div class="draw__form">
+                        <label class="draw__label">Opis</label>
+                        <textarea class="draw__text" id="description" name="description" rows="5" , columns="80"></textarea>
+                    </div>
+                    <div class="draw__submit">
+                        <input type="checkbox" name="valid_ninja"> Dodaj trasę do ulubionych
+                        <button type="submit" class="panel__button panel__button--save">Zapisz</button>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <h4 style="color: red">Aby zapisać trasę, musisz być zalogowany.</h4>
+                        }
+                    </div>
+                </form>
             </div>
         </div>
         <div class="tab__panel" id="tab3">
