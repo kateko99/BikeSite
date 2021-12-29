@@ -226,14 +226,41 @@ html, body {
 
 /* Panel rysowania */ 
 
+
+.draw__start {
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+.panel__length {
+    display: inline-block;
+    margin-left: 30px; 
+}
 .draw__form {
-    background-color: red;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 3fr;
+    margin-bottom: 15px;
+}
+.draw__label {
+    font-weight:bold;
+}
+.draw__input {
+    width: 100%;
+    height: 5vh;
 }
 .draw__text {
-    margin: 15px;
+    width: 100%;
+    height: 20vh;
+    padding: 10px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+}
+.draw__submit {
+    display: flex;
+    margin-top: 40px;
+}
+.panel__button--save {
+    margin-top:80px;
+    display: inline-block;
 }
 
 

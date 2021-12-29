@@ -1,8 +1,8 @@
-const geojson;
+let geojson;
 
 $(document).ready(function() {
-    const draw_button = $('.draw__button');
-    const save_button = $('.save__button');
+    const draw_button = $('.panel__button--draw');
+    const save_button = $('.panel__button--save');
     draw_button.on("click", function() { 
         mymap.pm.addControls({  
             position: 'topleft',  
@@ -13,11 +13,7 @@ $(document).ready(function() {
             drawCircle: false,
             //snappingOption: true
         }); 
-        
-        mymap.pm.enableDraw('Polyline', {
-            snappable: true,
-            snapDistance: 40,
-        });    
+           
     });
     save_button.on('click', function(e) {
         e.preventDefault();

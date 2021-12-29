@@ -119,18 +119,23 @@
             <div class="tab__panel" id="tab2">
                 <div class="search">
                     <h3 class="panel__header">Dodaj trasę</h3>
-                    <div>
-                        <button class="panel__button draw__button">Rysuj</button>
+                    <div class="draw__start">
+                        <button class="panel__button panel__button--draw">Rysuj</button>
+                        <h4 class="panel__length">Długość trasy: </h4>
                     </div>
                     <form id="form_route">
                         <div class="draw__form">
-                            <label class="draw_label">Nazwa</label>
-                            <input class="draw__input" id="name" name="name"></br>
-                            <label class="draw__label">Opis</label>
-                            <textarea class="draw__text" id="description" name="description" rows="5", columns="50"></textarea></form></br>
+                            <label class="draw__label">Nazwa</label>
+                            <input class="draw__input" id="route_name" name="name">
                         </div>
-                        <input type="checkbox" name="valid_ninja"> Dodaj trasę do ulubionych
-                        <button type="submit" class="panel__button save__button">Zapisz</button>
+                        <div class="draw__form">
+                            <label class="draw__label">Opis</label>
+                            <textarea class="draw__text" id="description" name="description" rows="5", columns="80"></textarea></form>
+                        </div>
+                        <div class="draw__submit">
+                            <input type="checkbox" name="valid_ninja"> Dodaj trasę do ulubionych
+                            <button type="submit" class="panel__button panel__button--save">Zapisz</button>
+                        </div>
                     </form>
                     
 
