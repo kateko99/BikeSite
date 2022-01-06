@@ -17,6 +17,7 @@ $(document).ready(function() {
 
     // Dodawanie i stylowanie wastwy dróg
 
+    /* WERSJA I - VECTOR GRID
     var roadsLayer = L.vectorGrid.slicer(drogi, {
         rendererFactory: L.canvas.tile,
         
@@ -79,7 +80,19 @@ $(document).ready(function() {
                 return feature.properties["fclass"]
         }
     }).addTo(mymap);
+*/
 
+/* WERSJA II - ESRI
+var roadsLayer = L.esri.Vector.vectorTileLayer("https://vectortileservices2.arcgis.com/MzCtPDSne0rpIt7V/arcgis/rest/services/wyzyna_roads2/VectorTileServer").addTo(mymap);
+
+*/ 
+
+// WERSJA III - EL CLASSICO 
+var roadsLayer = L.geoJSON.ajax("/data/drogi2.geojson").addTo(mymap);
+
+
+console.log("Droga" + roadsLayer);
+console.log("Typ: " + typeof(roadsLayer));
 
     console.log("(l. 84) Drogi: ");
     console.log(roadsLayer);

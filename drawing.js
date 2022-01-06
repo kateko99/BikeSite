@@ -27,7 +27,6 @@ $(document).ready(function() {
         console.log(layer);
         geojson = JSON.stringify(layer.toGeoJSON());
         console.log(geojson);
-        vertex_num = 0;
     });
 
 
@@ -51,10 +50,11 @@ $(document).ready(function() {
     function toRadian(degree) {
         return degree*Math.PI/180;
     }
+
     //var distance = getDistance([lat1, lng1], [lat2, lng2])
     mymap.on('pm:drawstart', ({workingLayer}) => {
         let length = 0;
-        let last_vertex = {}
+        let last_vertex = {} 
         workingLayer.on('pm:vertexadded', function({latlng}) {
             if(jQuery.isEmptyObject(last_vertex)) {
                 $('.panel__length').text(`Długość trasy: 0 metrów.`);
