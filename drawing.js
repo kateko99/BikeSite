@@ -23,6 +23,88 @@ $(document).ready(function() {
 
     });
 
+    /* Wstawka z Gridem i snapowaniem */
+
+    var drawing = false;
+    var editLayer = new L.LayerGroup();
+    mymap.addLayer(editLayer);
+    var vectorGridSlice;
+    function updateGeoJson(feature){
+    	drogi['features'] = data.features.map(f => {
+        if(f && f.properties && f.properties.id === feature.properties.id){
+        	return feature;
+        }
+        return f;
+      });
+      
+      setTimeout(() => setupVectorGrid(), 100);
+    }
+
+	function setupVectorGrid(){
+      if(vectorGridSlice){
+        mymap.removeLayer(vectorGridSlice);
+    }
+
+      vectorGridSlice = new L.VectorGrid.Slicer(drogi, {
+          minZoom: 1,
+          maxZoom: 20,
+          rendererFactory: L.svg.tile,
+          interactive: true,
+          vectorTileLayerStyles: {
+            sliced: (properties, zoom) => {
+              return {
+                weight: 1,
+                color: 'blue',
+                fill: true
+              };
+            }
+          },
+
+          getFeatureId: (f) => {
+            return f.properties.osm_id;
+          }
+        });
+
+        vectorGridSlice.on('mouseover', (e) => {
+        	if(!drawing){
+          	// Only trigger edit state if the edit layer button has been pressed!
+          	return false;
+          }
+          var layer = e.layer;
+          var properties = layer.properties;
+          var feature = drogi.features.find(f => f.properties.osm_id === properties.osm_id);
+
+          if(feature){
+              const geo = new L.GeoJSON(feature, { pmIgnore: false }).on('pm:update', (e) => { 
+              	const layer = e.layer;
+                updateGeoJson(layer.toGeoJSON());
+                setTimeout(() => layer.remove(), 100)
+              });
+              
+              editLayer.addLayer(geo);
+          }
+        });
+        
+      	mymap.addLayer(vectorGridSlice);
+      }
+      setupVectorGrid();
+      mymap.on('pm:globaleditmodetoggled', e => drawing = e.enabled);
+    
+		var options = {
+        position: 'topleft', // toolbar position, options are 'topleft', 'topright', 'bottomleft', 'bottomright'
+        drawMarker: true,  // adds button to draw markers
+        drawPolygon: true,  // adds button to draw a polygon
+        drawPolyline: true,  // adds button to draw a polyline
+        drawCircle: true,  // adds button to draw a cricle
+        editPolygon: true,  // adds button to toggle global edit mode
+        deleteLayer: true   // adds a button to delete layers
+    };
+
+
+
+
+
+
     mymap.on('pm:create', function({layer}) {
         console.log(layer);
         geojson = JSON.stringify(layer.toGeoJSON());

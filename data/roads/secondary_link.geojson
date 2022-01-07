@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"name": "secondary_link",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "osm_id": "126599368", "fclass": "secondary_link" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 19.371197, 50.622703 ], [ 19.371264, 50.622724 ], [ 19.37133, 50.622745 ] ] ] } },
+{ "type": "Feature", "properties": { "osm_id": "153451098", "fclass": "secondary_link" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 19.422717, 50.145522 ], [ 19.422646, 50.145575 ], [ 19.422617, 50.145603 ], [ 19.422594, 50.145635 ], [ 19.422579, 50.145684 ], [ 19.422572, 50.145727 ], [ 19.422581, 50.145765 ], [ 19.422603, 50.145801 ], [ 19.422629, 50.145833 ], [ 19.422667, 50.145858 ], [ 19.422913, 50.145979 ] ] ] } },
+{ "type": "Feature", "properties": { "osm_id": "223122213", "fclass": "secondary_link" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 19.556922, 50.28335 ], [ 19.556893, 50.283252 ], [ 19.556843, 50.283203 ], [ 19.556773, 50.283175 ], [ 19.556674, 50.283156 ] ] ] } }
+]
+}

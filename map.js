@@ -15,9 +15,9 @@ $(document).ready(function() {
 
     console.log(lyrImagery);
 
-    // Dodawanie i stylowanie wastwy dróg
+    // Dodawanie i stylowanie warstwy dróg
 
-    /* WERSJA I - VECTOR GRID
+    /* WERSJA I - VECTOR GRID 
     var roadsLayer = L.vectorGrid.slicer(drogi, {
         rendererFactory: L.canvas.tile,
         
@@ -80,15 +80,69 @@ $(document).ready(function() {
                 return feature.properties["fclass"]
         }
     }).addTo(mymap);
+
+    */
+
+// WERSJA II - ESRI
+/*
+var roadsLayer = L.esri.Vector.vectorTileLayer("https://vectortileservices2.arcgis.com/MzCtPDSne0rpIt7V/arcgis/rest/services/wyzyna_roads2/VectorTileServer").addTo(mymap);
 */
 
-/* WERSJA II - ESRI
-var roadsLayer = L.esri.Vector.vectorTileLayer("https://vectortileservices2.arcgis.com/MzCtPDSne0rpIt7V/arcgis/rest/services/wyzyna_roads2/VectorTileServer").addTo(mymap);
+/* WERSJA III - EL CLASSICO 
+//var roadsLayer = L.geoJSON.ajax("/data/drogi2.geojson").addTo(mymap);
+*/
 
-*/ 
 
-// WERSJA III - EL CLASSICO 
-var roadsLayer = L.geoJSON.ajax("/data/drogi2.geojson").addTo(mymap);
+// WERSJA IV - osobno jako geoJSON layer
+/*
+
+var bridleway = L.geoJSON.ajax("/data/roads/brideway.geojson");
+var cycleway = L.geoJSON.ajax("/data/roads/cycleway.geojson");
+var footway = L.geoJSON.ajax("/data/roads/footway.geojson");
+var living_street = L.geoJSON.ajax("/data/roads/living_street.geojson");
+
+var motorway = L.geoJSON.ajax("/data/roads/motorway.geojson").addTo(mymap);
+var motorway_link = L.geoJSON.ajax("/data/roads/motorway_link.geojson").addTo(mymap);
+var trunk = L.geoJSON.ajax("/data/roads/trunk.geojson").addTo(mymap);
+var trunk_link = L.geoJSON.ajax("/data/roads/trunk_link.geojson").addTo(mymap);
+var primary = L.geoJSON.ajax("/data/roads/primary.geojson").addTo(mymap);
+var primary_link = L.geoJSON.ajax("/data/roads/primary_link.geojson").addTo(mymap);
+
+
+var path = L.geoJSON.ajax("/data/roads/path.geojson");
+var pedestrian = L.geoJSON.ajax("/data/roads/pedestrian.geojson");
+
+var residential = L.geoJSON.ajax("/data/roads/residential.geojson");
+var secondary_link = L.geoJSON.ajax("/data/roads/secondary_link.geojson");
+var secondary = L.geoJSON.ajax("/data/roads/secondary.geojson");
+var service = L.geoJSON.ajax("/data/roads/service.geojson");
+var steps = L.geoJSON.ajax("/data/roads/steps.geojson");
+var tertiary_link = L.geoJSON.ajax("/data/roads/tertiary_link.geojson");
+var tertiary = L.geoJSON.ajax("/data/roads/tertiary.geojson");
+var track_grade_lower = L.geoJSON.ajax("/data/roads/track_grade_lower.geojson");
+var track_grade_upper = L.geoJSON.ajax("/data/roads/track_grade_upper.geojson");
+var track = L.geoJSON.ajax("/data/roads/track.geojson");
+var unclassified = L.geoJSON.ajax("/data/roads/unclassified.geojson");
+
+
+var roadsLayer = L.layerGroup([bridleway, cycleway, footway, living_street, motorway_link, motorway, path, pedestrian, primary_link,
+primary, residential, secondary_link, secondary, service, steps, tertiary_link, tertiary, track_grade_lower, track_grade_upper, track, trunk_link, trunk, unclassified]);
+
+*/
+
+/* WERSJA V - VectorTileLayer (nie działa)
+
+var roadsLayer = L.VectorTileLayer("https://vectortileservices2.arcgis.com/MzCtPDSne0rpIt7V/arcgis/rest/services/wyzyna_roads2/VectorTileServer", {
+    maxDetailZoom: 17,
+  style: {
+    className: "vectorlayer",
+    fillColor: 'red',
+    color: 'red'
+  },
+  leafletLayerOptions: {color: 'green', pmIgnore: true, snapIgnore: false}, // makes it snappable but not editable
+  visibleTypes: ['svg','leaflet']
+});
+*/
 
 
 console.log("Droga" + roadsLayer);
@@ -319,6 +373,7 @@ console.log("Typ: " + typeof(roadsLayer));
 
 
     // Funkcja do wyświetlania dróg w zależności od zooma
+
     
     mymap.on('zoomend', function() {
         var zoomlevel = mymap.getZoom();
@@ -340,6 +395,19 @@ console.log("Typ: " + typeof(roadsLayer));
             }
         }
     });
+
+    /* Próby przy osobnych warstwach wczytywanych za pomocą wtyczki geojson
+    mymap.on('zoomend', function() {
+        var zoomlevel = mymap.getZoom();
+        if(zoomlevel>12) {
+            secondary.addTo(mymap);
+            secondary_link.addTo(mymap);
+            footway.addTo(mymap);
+
+        }
+    }
+    )
+    */
 
 });
 
