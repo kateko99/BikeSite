@@ -145,11 +145,9 @@ var roadsLayer = L.VectorTileLayer("https://vectortileservices2.arcgis.com/MzCtP
 */
 
 
-console.log("Droga" + roadsLayer);
+//console.log("Droga" + roadsLayer);
 console.log("Typ: " + typeof(roadsLayer));
 
-    console.log("(l. 84) Drogi: ");
-    console.log(roadsLayer);
 
 
     // Stylowanie warstw:
@@ -355,7 +353,7 @@ console.log("Typ: " + typeof(roadsLayer));
 
     overlays = {
         "Granica Wyżyny" : lyrBoundary,
-        "Drogi" : roadsLayer,
+        //"Drogi" : roadsLayer,
         "Kawiarnie" : lyrCafe,
         "Zamki" : lyrCastle,
         "Obiekty archeologiczne" : lyrArcheo,

@@ -25,7 +25,7 @@ $(document).ready(function() {
 
     /* Wstawka z Gridem i snapowaniem */
 
-    var drawing = false;
+    var drawing = true;
     var editLayer = new L.LayerGroup();
     mymap.addLayer(editLayer);
     var vectorGridSlice;
@@ -75,7 +75,7 @@ $(document).ready(function() {
           var feature = drogi.features.find(f => f.properties.osm_id === properties.osm_id);
 
           if(feature){
-              const geo = new L.GeoJSON(feature, { pmIgnore: false }).on('pm:update', (e) => { 
+              const geo = new L.GeoJSON(feature, { pmIgnore: false }).on('pm:draw', (e) => { 
               	const layer = e.layer;
                 updateGeoJson(layer.toGeoJSON());
                 setTimeout(() => layer.remove(), 100)
@@ -88,7 +88,7 @@ $(document).ready(function() {
       	mymap.addLayer(vectorGridSlice);
       }
       setupVectorGrid();
-      mymap.on('pm:globaleditmodetoggled', e => drawing = e.enabled);
+      //mymap.on('pm:drawstart', e => drawing = e.enabled);
     
 		var options = {
         position: 'topleft', // toolbar position, options are 'topleft', 'topright', 'bottomleft', 'bottomright'
@@ -100,12 +100,7 @@ $(document).ready(function() {
         deleteLayer: true   // adds a button to delete layers
     };
 
-
-
-
-
-
-    mymap.on('pm:create', function({layer}) {
+    mymap.on('pm:globaleditmodetoggled', function({layer}) {
         console.log(layer);
         geojson = JSON.stringify(layer.toGeoJSON());
         console.log(geojson);
