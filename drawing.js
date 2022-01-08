@@ -12,7 +12,7 @@ $(document).ready(function() {
             drawRectangle: false,
             drawPolygon: false,
             drawCircle: false,
-            //snappingOption: true
+            snappingOption: true
         }); 
            
     });
@@ -20,18 +20,18 @@ $(document).ready(function() {
         e.preventDefault();
         var data = $('#form_route').serializeArray();
         alert(JSON.stringify(data));
-
     });
 
     /* Wstawka z Gridem i snapowaniem */
 
-    var drawing = true;
+    var drawing = false;
     var editLayer = new L.LayerGroup();
     mymap.addLayer(editLayer);
     var vectorGridSlice;
+
     function updateGeoJson(feature){
-    	drogi['features'] = data.features.map(f => {
-        if(f && f.properties && f.properties.id === feature.properties.id){
+    	drogi['features'] = drogi.features.map(f => {
+        if(f && f.properties && f.properties.osm_id === feature.properties.osm_id){
         	return feature;
         }
         return f;
@@ -62,6 +62,9 @@ $(document).ready(function() {
 
           getFeatureId: (f) => {
             return f.properties.osm_id;
+          },
+          getClass: (f) => {
+              return f.properties.fclass;
           }
         });
 
@@ -75,20 +78,22 @@ $(document).ready(function() {
           var feature = drogi.features.find(f => f.properties.osm_id === properties.osm_id);
 
           if(feature){
-              const geo = new L.GeoJSON(feature, { pmIgnore: false }).on('pm:draw', (e) => { 
+              const geo = new L.GeoJSON(feature, { pmIgnore: false }).on('pm:update', (e) => {   //draw?
               	const layer = e.layer;
                 updateGeoJson(layer.toGeoJSON());
                 setTimeout(() => layer.remove(), 100)
               });
               
               editLayer.addLayer(geo);
+              mymap.removeLayer(editLayer);
+              mymap.addLayer(editLayer);
           }
         });
         
       	mymap.addLayer(vectorGridSlice);
       }
       setupVectorGrid();
-      //mymap.on('pm:drawstart', e => drawing = e.enabled);
+      mymap.on('pm:globaldrawmodetoggled', e => drawing = e.enabled);  //drawstart
     
 		var options = {
         position: 'topleft', // toolbar position, options are 'topleft', 'topright', 'bottomleft', 'bottomright'
@@ -104,7 +109,7 @@ $(document).ready(function() {
         console.log(layer);
         geojson = JSON.stringify(layer.toGeoJSON());
         console.log(geojson);
-    });
+    });  //Przy naciśnięciu edytowania wyświetla się ta warstwa w konsoli?
 
 
     /* LICZENIE DYSTANSU */

@@ -85,8 +85,9 @@ $(document).ready(function() {
 
 // WERSJA II - ESRI
 
+/*
 var roadsLayer = L.esri.Vector.vectorTileLayer("https://vectortileservices2.arcgis.com/MzCtPDSne0rpIt7V/arcgis/rest/services/wyzyna_roads2/VectorTileServer").addTo(mymap);
-
+*/
 
 /* WERSJA III - EL CLASSICO 
 //var roadsLayer = L.geoJSON.ajax("/data/drogi2.geojson").addTo(mymap);
