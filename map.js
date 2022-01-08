@@ -84,9 +84,9 @@ $(document).ready(function() {
     */
 
 // WERSJA II - ESRI
-/*
+
 var roadsLayer = L.esri.Vector.vectorTileLayer("https://vectortileservices2.arcgis.com/MzCtPDSne0rpIt7V/arcgis/rest/services/wyzyna_roads2/VectorTileServer").addTo(mymap);
-*/
+
 
 /* WERSJA III - EL CLASSICO 
 //var roadsLayer = L.geoJSON.ajax("/data/drogi2.geojson").addTo(mymap);
@@ -302,44 +302,56 @@ console.log("Typ: " + typeof(roadsLayer));
 
     // Dodawanie warstw:
     lyrBoundary = L.geoJSON(maska, {
-        style: boundaryStyle
+        style: boundaryStyle,
+        pmIgnore: true
     }).addTo(mymap);
     
     lyrCafe = L.geoJSON(cafe, {
         pointToLayer: cafeStyle,
+        pmIgnore: true
     }).addTo(mymap);
     console.log("(l 117) Kawiarnie: ");
     console.log(lyrCafe);
 
     lyrCastle = L.geoJSON(castle, {
-        pointToLayer: castleStyle
+        pointToLayer: castleStyle,
+        pmIgnore: true
     }).addTo(mymap);
     lyrArcheo = L.geoJSON(archeo, {
-        pointToLayer: archeoStyle
+        pointToLayer: archeoStyle,
+        pmIgnore: true
     }).addTo(mymap);
     lyrAttraction = L.geoJSON(attraction, {
-        pointToLayer: attractionStyle
+        pointToLayer: attractionStyle,
+        pmIgnore: true
     }).addTo(mymap);
     lyrMemorial = L.geoJSON(memorial, {
-        pointToLayer: memorialStyle
+        pointToLayer: memorialStyle,
+        pmIgnore: true
     }).addTo(mymap);
     lyrMuseum = L.geoJSON(museum, {
-        pointToLayer: museumStyle
+        pointToLayer: museumStyle,
+        pmIgnore: true
     }).addTo(mymap);
     lyrRestaurant = L.geoJSON(restaurant, {
-        pointToLayer: restaurantStyle
+        pointToLayer: restaurantStyle,
+        pmIgnore: true
     }).addTo(mymap);
     lyrShop = L.geoJSON(shop, {
-        pointToLayer: shopStyle
+        pointToLayer: shopStyle,
+        pmIgnore: true
     }).addTo(mymap);
     lyrToilet = L.geoJSON(toilet, {
-        pointToLayer: toiletStyle
+        pointToLayer: toiletStyle,
+        pmIgnore: true
     }).addTo(mymap);
     lyrTourist = L.geoJSON(tourist_info, {
-        pointToLayer: touristStyle
+        pointToLayer: touristStyle,
+        pmIgnore: true
     }).addTo(mymap);
     lyrTower = L.geoJSON(tower, {
-        pointToLayer: towerStyle
+        pointToLayer: towerStyle,
+        pmIgnore: true
     }).addTo(mymap);
 
 
