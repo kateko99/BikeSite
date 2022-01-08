@@ -6,7 +6,7 @@ let lyrBoundary;
 let basemaps, overlays;
     
 $(document).ready(function() {
-    mymap = L.map('mapid', {center: [50.2071, 19.8120], zoom: 13, minZoom: 9});
+    mymap = L.map('mapid', {center: [50.2071, 19.8120], zoom: 13, minZoom: 5, maxZoom:30});
     lyrOSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
     lyrTopo = L.tileLayer.provider('OpenTopoMap');
     lyrImagery = L.tileLayer.provider('Esri.WorldImagery');
@@ -381,31 +381,6 @@ console.log("Typ: " + typeof(roadsLayer));
     }
 
     ctlLayers = L.control.layers(basemaps, overlays).addTo(mymap);
-
-
-    // Funkcja do wyświetlania dróg w zależności od zooma
-
-    
-    mymap.on('zoomend', function() {
-        var zoomlevel = mymap.getZoom();
-        if(zoomlevel<15) {
-            if(mymap.hasLayer(roadsLayer)) 
-            {
-                mymap.removeLayer(roadsLayer);
-            }
-            else {
-                console.log("The roads layer isn't active.")
-            }
-        }
-        if(zoomlevel >=15) {
-            if(mymap.hasLayer(roadsLayer)) {
-                console.log("Layer is already active.");
-            }
-            else {
-                mymap.addLayer(roadsLayer);
-            }
-        }
-    });
 
     /* Próby przy osobnych warstwach wczytywanych za pomocą wtyczki geojson
     mymap.on('zoomend', function() {

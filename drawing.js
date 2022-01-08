@@ -27,75 +27,58 @@ $(document).ready(function() {
     var drawing = false;
     var editLayer = new L.LayerGroup();
     mymap.addLayer(editLayer);
-    var vectorGridSlice;
-
-    function updateGeoJson(feature){
-    	drogi['features'] = drogi.features.map(f => {
-        if(f && f.properties && f.properties.osm_id === feature.properties.osm_id){
-        	return feature;
-        }
-        return f;
-      });
-      
-      setTimeout(() => setupVectorGrid(), 100);
-    }
+    var roadsLayer;
 
 	function setupVectorGrid(){
-      if(vectorGridSlice){
-        mymap.removeLayer(vectorGridSlice);
-    }
-
-      vectorGridSlice = new L.VectorGrid.Slicer(drogi, {
-          minZoom: 1,
-          maxZoom: 20,
-          rendererFactory: L.svg.tile,
-          interactive: true,
-          vectorTileLayerStyles: {
-            sliced: (properties, zoom) => {
-              return {
-                weight: 1,
-                color: 'blue',
-                fill: true
-              };
-            }
-          },
-
-          getFeatureId: (f) => {
-            return f.properties.osm_id;
-          },
-          getClass: (f) => {
-              return f.properties.fclass;
-          }
-        });
-
-        vectorGridSlice.on('mouseover', (e) => {
-        	if(!drawing){
-          	// Only trigger edit state if the edit layer button has been pressed!
-          	return false;
-          }
-          var layer = e.layer;
-          var properties = layer.properties;
-          var feature = drogi.features.find(f => f.properties.osm_id === properties.osm_id);
-
-          if(feature){
-              const geo = new L.GeoJSON(feature, { pmIgnore: false }).on('pm:update', (e) => {   //draw?
-              	const layer = e.layer;
-                updateGeoJson(layer.toGeoJSON());
-                setTimeout(() => layer.remove(), 100)
-              });
-              
-              editLayer.addLayer(geo);
-              mymap.removeLayer(editLayer);
-              mymap.addLayer(editLayer);
-          }
-        });
-        
-      	mymap.addLayer(vectorGridSlice);
+      if(roadsLayer){
+        mymap.removeLayer(roadsLayer);
       }
-      setupVectorGrid();
-      mymap.on('pm:globaldrawmodetoggled', e => drawing = e.enabled);  //drawstart
+        roadsLayer = new L.VectorGrid.Slicer(drogi, {
+            minZoom: 1,
+            maxZoom: 20,
+            rendererFactory: L.svg.tile,
+            interactive: true,
+            vectorTileLayerStyles: {
+                sliced: (properties, zoom) => {
+                return {
+                    weight: 1,
+                    color: 'blue',
+                    fill: true
+                };
+                }
+            },
+
+            getId: (f) => {
+                return f.properties.osm_id;
+            },
+            getClass: (f) => {
+                return f.properties.fclass;
+            }
+        });
+
+        roadsLayer.on('mouseover', (e) => {
+            if(!drawing){
+                // Only trigger edit state if the edit layer button has been pressed!
+                return false;
+            }
+            var layer = e.layer;
+            var properties = layer.properties;
+            var feature = drogi.features.find(f => f.properties.osm_id === properties.osm_id);
+
+            if(feature){
+                const geo = new L.GeoJSON(feature, { pmIgnore: false });
+                
+                editLayer.addLayer(geo);
+                mymap.removeLayer(editLayer);
+                mymap.addLayer(editLayer);
+            }
+        });
+        mymap.addLayer(roadsLayer);
+    }
+    setupVectorGrid();
+    mymap.on('pm:globaldrawmodetoggled', e => drawing = e.enabled);  //drawstart
     
-		var options = {
+	var options = {
         position: 'topleft', // toolbar position, options are 'topleft', 'topright', 'bottomleft', 'bottomright'
         drawMarker: true,  // adds button to draw markers
         drawPolygon: true,  // adds button to draw a polygon
@@ -156,5 +139,41 @@ $(document).ready(function() {
             }
         })
     });
+
+     // Funkcja do wyświetlania dróg w zależności od zooma
+    
+     mymap.on('zoomend', function() {
+        var zoomlevel = mymap.getZoom();
+        if(zoomlevel<15) {
+            if(mymap.hasLayer(roadsLayer)) 
+            {
+                mymap.removeLayer(roadsLayer);
+            }
+            else {
+                console.log("The roads layer isn't active.")
+            }
+        }
+        if(zoomlevel >=15) {
+            if(mymap.hasLayer(roadsLayer)) {
+                console.log("Layer is already active.");
+            }
+            else {
+                mymap.addLayer(roadsLayer);
+            }
+        }
+    });
+
+
+    mymap.on('pm:create', ({layer}) => {
+        console.log("Working layer: " + layer);
+        var new_layer = turf.lineString(layer);
+        console.log(new_layer);
+
+        // Doczytać  wtyczkę zamieniającą: https://www.npmjs.com/package/geojson-polyline
+        // Utworzyć var castle = ...
+        // var overlapping = turf.lineOverlap(line1, line2);
+        // https://www.npmjs.com/package/@turf/line-overlap
+        
+    })
 
 });
