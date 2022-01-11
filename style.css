@@ -27,11 +27,12 @@ html, body {
     box-shadow: 0 2px 2px -5px gainsboro;
     /*cień jeszcze nie działa, trzeba to poprawić*/
     padding-left: 4em;
-    background-color: gold;
+    background-color: black;  /* wcześniej: gold */
     font-size: 20px;;
     font-family: 'Jockey One', sans-serif;
     border-bottom: 1px solid rgb(64,48,23);
     height: 10vh;
+    color: white;
 }
 
 .logo__picture {
@@ -171,7 +172,7 @@ html, body {
 }
 
 .panel {
-    background-color:rgb(255,248,220);
+    background-color: gray;  /* wcześniej: rgb(255,248,220);  */
     border-left: 1px solid rgb(64,48,23);
     padding: 20px;
     font-family: 'Barlow', sans-serif;

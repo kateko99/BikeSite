@@ -389,7 +389,6 @@ console.log("Typ: " + typeof(roadsLayer));
             secondary.addTo(mymap);
             secondary_link.addTo(mymap);
             footway.addTo(mymap);
-
         }
     }
     )
