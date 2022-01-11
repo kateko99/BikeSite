@@ -129,9 +129,9 @@ $(document).ready(function() {
             else {
                 console.log("Obiekt latlng: " + latlng);
                 let line = parseFloat(getDistance([last_vertex.lat, last_vertex.lng], [latlng.lat, latlng.lng]));
-                line_km = parseFloat(line/1000);
-                new_distance = parseFloat(Math.round(line_km*100)/100);
-                length = length + new_distance;
+                line_km = line/1000;
+                new_distance = line_km.toFixed(2);
+                length = parseFloat(length) + parseFloat(new_distance);
                 console.log("Długość: " + length);
                 $('.panel__length').text(`Długość trasy:  ${length} kilometrów.`);
                 last_vertex.lat = latlng.lat;
@@ -258,7 +258,7 @@ $(document).ready(function() {
             var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0});
             if(intersect['features'].length>0) {
                 output_layer.push(intersect);
-                pave_analyse.sum_motorway = pave_analyse.sum_motorway + turf.length(intersect);
+                pave_analyse.sum_motorway = parseFloat(pave_analyse.sum_motorway) + parseFloat(turf.length(intersect).toFixed(3));
             }
         }
         for(var i=0; i<trunk.length; i++) {
@@ -266,7 +266,7 @@ $(document).ready(function() {
             var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0});
             if(intersect['features'].length>0) {
                 output_layer.push(intersect);
-                pave_analyse.sum_trunk = pave_analyse.sum_trunk + turf.length(intersect);
+                pave_analyse.sum_trunk = parseFloat(pave_analyse.sum_trunk) + parseFloat(turf.length(intersect).toFixed(3));
             }
         }
         for(var i=0; i<secondary.length; i++) {
@@ -274,7 +274,7 @@ $(document).ready(function() {
             var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0});
             if(intersect['features'].length>0) {
                 output_layer.push(intersect);
-                pave_analyse.sum_secondary = pave_analyse.sum_secondary + turf.length(intersect);
+                pave_analyse.sum_secondary = parseFloat(pave_analyse.sum_secondary) + parseFloat(turf.length(intersect).toFixed(3));
             }
         }
         for(var i=0; i<pedestrian.length; i++) {
@@ -282,7 +282,7 @@ $(document).ready(function() {
             var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0});
             if(intersect['features'].length>0) {
                 output_layer.push(intersect);
-                pave_analyse.sum_pedestrian = pave_analyse.sum_pedestrian + turf.length(intersect);
+                pave_analyse.sum_pedestrian = parseFloat(pave_analyse.sum_pedestrian) + parseFloat(turf.length(intersect).toFixed(3));
             }
         }
         for(var i=0; i<track.length; i++) {
@@ -290,7 +290,7 @@ $(document).ready(function() {
             var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0});
             if(intersect['features'].length>0) {
                 output_layer.push(intersect);
-                pave_analyse.sum_track = pave_analyse.sum_track + turf.length(intersect);
+                pave_analyse.sum_track = parseFloat(pave_analyse.sum_track) + parseFloat(turf.length(intersect).toFixed(3));
             }
         }
         for(var i=0; i<cycleway.length; i++) {
@@ -298,7 +298,7 @@ $(document).ready(function() {
             var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0});
             if(intersect['features'].length>0) {
                 output_layer.push(intersect);
-                pave_analyse.sum_cycleway = pave_analyse.sum_cycleway + turf.length(intersect);
+                pave_analyse.sum_cycleway = parseFloat(pave_analyse.sum_cycleway) + parseFloat(turf.length(intersect).toFixed(3));
             }
         }
         for(var i=0; i<other.length; i++) {
@@ -306,7 +306,7 @@ $(document).ready(function() {
             var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0});
             if(intersect['features'].length>0) {
                 output_layer.push(intersect);
-                pave_analyse.sum_other = pave_analyse.sum_other + turf.length(intersect);
+                pave_analyse.sum_other = parseFloat(pave_analyse.sum_other) + parseFloat(turf.length(intersect).toFixed(3));
             }
         }
 
