@@ -195,9 +195,9 @@ $(document).ready(function() {
             case "secondary_link":
             case "tertiary":
             case "tertiary_link":
+            case "unclassified":
                 secondary.push(coords);
                 break;
-            case "unclassified":
             case "living_street":
             case "residential":
             case "pedestrian":
@@ -221,13 +221,13 @@ $(document).ready(function() {
             case "steps":
                 other.push(coords);
                 break;
-
         }
     }
 
     mymap.on('pm:create', ({layer}) => {
 
         // Narysowana droga - zamiana na LngLat
+
         var new_layer = turf.lineString(layer);
         coords = new_layer["geometry"]["coordinates"]["_latlngs"];
         var new_coords = [];
@@ -242,6 +242,7 @@ $(document).ready(function() {
 
 
         // Sprawdzanie części wspólnych i obliczanie długości
+
         const pave_analyse = {
             sum_motorway: 0,
             sum_trunk: 0,
@@ -249,15 +250,19 @@ $(document).ready(function() {
             sum_pedestrian: 0,
             sum_track: 0,
             sum_cycleway: 0,
-            sum_other: 0
+            sum_other: 0,
+            asphalt: 0,
+            other: 0,
+            forest: 0,
+            cycle: 0
+
         }
 
-        var output_layer = [];
         for(var i=0; i<motorway.length; i++) {
             var line = turf.lineString(motorway[i][0]);
             var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0});
             if(intersect['features'].length>0) {
-                output_layer.push(intersect);
+                //output_layer.push(intersect);
                 pave_analyse.sum_motorway = parseFloat(pave_analyse.sum_motorway) + parseFloat(turf.length(intersect).toFixed(3));
             }
         }
@@ -265,7 +270,6 @@ $(document).ready(function() {
             var line = turf.lineString(trunk[i][0]);
             var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0});
             if(intersect['features'].length>0) {
-                output_layer.push(intersect);
                 pave_analyse.sum_trunk = parseFloat(pave_analyse.sum_trunk) + parseFloat(turf.length(intersect).toFixed(3));
             }
         }
@@ -273,7 +277,6 @@ $(document).ready(function() {
             var line = turf.lineString(secondary[i][0]);
             var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0});
             if(intersect['features'].length>0) {
-                output_layer.push(intersect);
                 pave_analyse.sum_secondary = parseFloat(pave_analyse.sum_secondary) + parseFloat(turf.length(intersect).toFixed(3));
             }
         }
@@ -281,7 +284,6 @@ $(document).ready(function() {
             var line = turf.lineString(pedestrian[i][0]);
             var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0});
             if(intersect['features'].length>0) {
-                output_layer.push(intersect);
                 pave_analyse.sum_pedestrian = parseFloat(pave_analyse.sum_pedestrian) + parseFloat(turf.length(intersect).toFixed(3));
             }
         }
@@ -289,7 +291,6 @@ $(document).ready(function() {
             var line = turf.lineString(track[i][0]);
             var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0});
             if(intersect['features'].length>0) {
-                output_layer.push(intersect);
                 pave_analyse.sum_track = parseFloat(pave_analyse.sum_track) + parseFloat(turf.length(intersect).toFixed(3));
             }
         }
@@ -297,21 +298,21 @@ $(document).ready(function() {
             var line = turf.lineString(cycleway[i][0]);
             var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0});
             if(intersect['features'].length>0) {
-                output_layer.push(intersect);
                 pave_analyse.sum_cycleway = parseFloat(pave_analyse.sum_cycleway) + parseFloat(turf.length(intersect).toFixed(3));
             }
         }
         for(var i=0; i<other.length; i++) {
             var line = turf.lineString(other[i][0]);
-            var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0});
+            var intersect = turf.lineOverlap(draw_layer,line, {tolerance:0.01});
             if(intersect['features'].length>0) {
-                output_layer.push(intersect);
                 pave_analyse.sum_other = parseFloat(pave_analyse.sum_other) + parseFloat(turf.length(intersect).toFixed(3));
             }
         }
+        pave_analyse.asphalt = pave_analyse.sum_trunk + pave_analyse.sum_secondary;
+        pave_analyse.other = pave_analyse.sum_pedestrian + pave_analyse.sum_other;
+        pave_analyse.forest = pave_analyse.sum_track;
+        pave_analyse.cycle = pave_analyse.cycleway;
 
-
-        console.log(output_layer);
         console.log("Długość autostrad: " + pave_analyse.sum_motorway);
         console.log("Długość głównych: " + pave_analyse.sum_trunk);
         console.log("Długość podrzędnych: " + pave_analyse.sum_secondary);
@@ -320,25 +321,12 @@ $(document).ready(function() {
         console.log("Długość ścieżek rowerowych: " + pave_analyse.sum_cycleway);
         console.log("Długość innych: " + pave_analyse.sum_other);
 
+        console.log("ASFALT: " + pave_analyse.asphalt);
+        console.log("INNE: " + pave_analyse.other);
+        console.log("LAS: " + pave_analyse.forest);
+        console.log("ROWEROWE: " + pave_analyse.cycle);
 
 
-        //console.log(new_array[323][0]);
-        //console.log(new_layer);
-        //var roads_layer = turf.lineString(new_array[323][0]);
-        //var overlapping = turf.lineOverlap(new_layer, roads_layer);
-        //console.log(overlapping);
-
-        //var line1 = turf.lineString([[126, -11], [129, -21]]);
-        //var line2 = turf.lineString([[123, -18], [131, -14]]);
-        //var line3 = turf.lineString(new_layer_coords);   //ta jest w porządku 
-    
-        //var intersects = turf.lineIntersect(line1, line3);
-        //console.log(intersects);
-        // Doczytać  wtyczkę zamieniającą: https://www.npmjs.com/package/geojson-polyline
-        // Utworzyć var castle = ...
-        // var overlapping = turf.lineOverlap(line1, line2);
-        // https://www.npmjs.com/package/@turf/line-overlap
-        
     })
 
 });
