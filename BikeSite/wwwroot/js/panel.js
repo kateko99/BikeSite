@@ -9,20 +9,20 @@
 */
 
 $('.tab').each(function() {
-    var $this = $(this);
+    let $this = $(this);
     console.log("This:", this);
-    var $tab = $this.find("li.tab__active");
+    let $tab = $this.find("li.tab__active");
     console.log("Tab: ", $tab)
-    var $link = $tab.find('a');
+    let $link = $tab.find('a');
     console.log("Link 1: ", $link)
-    var $panel = $($link.attr('href'));
+    let $panel = $($link.attr('href'));
     console.log("Panel: ", $panel);
 
     $this.on('click', ".tab__header", function(e) {
         e.preventDefault();
-        var $link = $(this);
+        let $link = $(this);
         console.log("Link", $link)
-        var id = this.hash;
+        let id = this.hash;
         console.log("Id", id);
         $panel_div = $($panel);
         if(id && !$link.is('.tab__active')) {

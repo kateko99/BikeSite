@@ -41,18 +41,19 @@ namespace BikeSite.Controllers
             return View();
         }
 
-        public IActionResult Dashboard()
+        public IActionResult AboutUs()
         {
             // var test = User.Identity;
             return View();
         }
 
+        /*
         public async Task<IActionResult> News()
         {
             var idToken = await HttpContext.GetTokenAsync("id_token");
             return View();
-        }
-        public IActionResult AboutUs()
+        }  */
+        public IActionResult Jura()
         {
             return View();
         }

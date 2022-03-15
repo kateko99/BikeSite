@@ -11,6 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
+using System.Text.Json;
 
 namespace BikeSite.Controllers
 {
@@ -109,15 +110,108 @@ namespace BikeSite.Controllers
             return View();
         }
 
+        /*
         [HttpPost]
-        public ActionResult CreateRoute([FromBody] Route route_data)
+        public IActionResult Register(string username, string email, string password)
+        {
+
+            _userService.AddNewUser("cookies", )
+        }  */
+
+
+        public class JsonRoute {
+            public string Geometry { get; set; }
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public int Asphalt { get; set; }
+            public int Cycle { get; set; }
+            public int Forest { get; set; }
+            public int Other { get; set; }
+            public int Rest { get; set; }
+            public string Type { get; set; }
+            public double Length { get; set; }
+            public bool Fav { get; set; }
+            public DateTime Date { get; set; }
+            public string Difficulty { get; set; }
+        }
+
+        //[FromBody]string name, string desc, string geo, string pave, double length, bool fav, DateTime date
+        [HttpPost]
+        public ActionResult CreateRoute([FromBody] JsonRoute result)    // tu być może trzeba [FromBody] przed całością
         {
             string user_nameid = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var user = _userService.GetUserByIdProvider(user_nameid);
-            route_data.UserId = user.UserId;
-            _userService.AddNewRoute(route_data);  
-                string message = "SUCCESS";
-                return Json(new { Message = message });
+            Route new_route = new Route();
+            new_route.UserId = user.UserId;
+            new_route.Geometry = result.Geometry;
+            new_route.Name = result.Name;
+            new_route.Description = result.Description;
+            new_route.Asphalt = result.Asphalt;
+            new_route.Cycle = result.Cycle;
+            new_route.Forest = result.Forest;
+            new_route.Other = result.Other;
+            new_route.Rest = result.Rest;
+            new_route.Type = result.Type;
+            new_route.Length = result.Length;
+            new_route.Date = result.Date;
+            new_route.Difficulty = result.Difficulty;
+            string u_name = user.Firstname;
+            string u_lastname = user.Lastname;
+            if(result.Fav)
+            {
+                _userService.AddNewFavRoute(new_route, user_nameid);
+            }
+            else
+            {
+                _userService.AddNewRoute(new_route);
+            }
+            //string message = "SUCCESS";
+            return Json(new { name = u_name, lastname = u_lastname });
         }
+
+        public class JsonSearch
+        {
+            public string Length { get; set; }
+            public string Difficulty { get; set; }
+            public string Pavement { get; set; }
+        }
+        public ActionResult SearchRoutes([FromBody] JsonSearch search)
+        {
+            double min = 0;
+            double max = 1000;
+            if(search.Length=="len1")
+            {
+                max = 10;
+            }
+            else if(search.Length=="len2") {
+                min = 10;
+                max = 30;
+            }
+            else if(search.Length=="len3")
+            {
+                min = 30;
+                max = 60;
+            }
+            else
+            {
+                min = 60;
+            }
+            var list = _userService.FindRoutes(min, max, search.Difficulty, search.Pavement);
+            var json = JsonSerializer.Serialize(list);
+            return Json(json);
+        }
+
+        /*
+        public ActionResult GetFavRoutes(string id)
+        {
+            var providerId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var appUser = _userService.GetUserByIdProvider(providerId);
+            string name_id = appUser.NameIdentifier;
+            var list = _userService.
+            var json = JsonSerializer.Serialize(list);
+            return Json(json);
+            return x;
+        }
+        */
     }
 }

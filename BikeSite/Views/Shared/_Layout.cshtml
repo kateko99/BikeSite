@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,6 +26,8 @@
     <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.bundled.js"></script>
     <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.js"></script>
 
+    <script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
+    <script src="https://unpkg.com/esri-leaflet-vector@3/dist/esri-leaflet-vector.js"></script>
 
     <script src="~/js/layers/drogi2.js"></script>
     <script src="~/js/layers/wyzyna.js"></script>
@@ -42,21 +44,23 @@
     <script src="~/js/layers/tower.js"></script>
     <script src="~/js/layers/maska.js"></script>
 
+    <!-- Turf.JS -->
+    <script src='https://unpkg.com/@@turf/turf@6/turf.min.js'></script>
+
 </head>
 <body>
         <nav class="navigation">
             <div class="logo">
                 <div class="logo__img">
-                    <img class="logo__picture" src="/img/bike-logo.png">
+                    <img class="logo__picture" src="/img/bike-logo4.png">
                 </div>
                 <div class="logo__text"></div>
             </div>
             <div class="menu">
                 <ul class="list">
                     <li class="list__el"><a class="list__link" asp-area="" asp-controller="Home" asp-action="Index">Mapa</a></li>
-                    <li class="list__el"><a class="list__link" asp-area="" asp-controller="Home" asp-action="Dashboard">Z trasy</a></li>
-                    <li class="list__el"><a class="list__link" asp-area="" asp-controller="Home" asp-action="News">Ciekawostki</a></li>
-                    <li class="list__el"><a class="list__link" asp-area="" asp-controller="Home" asp-action="AboutUs">O nas</a></li>
+                    <li class="list__el"><a class="list__link" asp-area="" asp-controller="Home" asp-action="AboutUs">Jak szukać?</a></li>
+                    <li class="list__el"><a class="list__link" asp-area="" asp-controller="Home" asp-action="Jura">O wyżynie</a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="list__el"><a class="list__link" asp-area="" asp-controller="Home" asp-action="UserAccount">Moje konto</a></li>
@@ -66,10 +70,17 @@
 
             @if (!User.Identity.IsAuthenticated)
             {
-                <div class="login">
-                    <button class="button">@Html.ActionLink("Zaloguj", "Login", "User", new object { })</button>
-                    <button class="button">@Html.ActionLink("Zarejestruj", "Register", "User", new object { })</button>
-                </div>
+        <div class="login">
+            <!--
+        <button class="button">@Html.ActionLink("Zaloguj", "Login", "User", new object { })</button>
+        <button class="button">@Html.ActionLink("Zarejestruj", "Register", "User", new object { })</button>
+
+        -->
+            <div class="form__google" onclick="google_func('/Home/UserAccount')">
+                <p class="google__text">Zaloguj z</p>
+                <img class="form__icon" src="img/google.png">
+            </div>
+        </div>
             }
             else
             {
@@ -80,11 +91,6 @@
         </nav>
 
     @RenderBody()
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - BikeSite - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

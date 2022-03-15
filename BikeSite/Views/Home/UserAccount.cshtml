@@ -4,69 +4,18 @@
     ViewData["Title"] = "View";
 }
 
-<h1 class="header">Witaj, @Html.DisplayFor(model => model.Firstname) @Html.DisplayFor(model => model.Lastname)</h1>
+<div class="content content--user">
+    <div class="content__log">
+        <h2 class="jura__header jura__header--first">Witaj, @Html.DisplayFor(model => model.Firstname) @Html.DisplayFor(model => model.Lastname)</h2>
+        <div class="account__container">
+            <hr />
+            <h3>Twoje ulubione trasy: </h3>
 
-<div class="account__container">
-    <h4></h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NameIdentifier)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NameIdentifier)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Firstname)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Firstname)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Lastname)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Lastname)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Role)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Role)
-        </dd>
-    </dl>
+            <div class="map--fav"id="favourite_map"></div>
+        </div>
+    </div>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+<script type="text/javascript" src="~/js/fav_map.js"></script>
+
+
+

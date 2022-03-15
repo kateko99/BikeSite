@@ -17,8 +17,15 @@ namespace BikeSite.Models
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
+        public int Asphalt { get; set; }
+        public int Cycle { get; set; }
+        public int Forest { get; set; }
+        public int Other { get; set; }
+        public int Rest { get; set; }
         public string Type { get; set; }
+        public string Difficulty { get; set; }
         public double Length {get; set;}
         public DateTime Date { get; set; }
+
     }
 }

@@ -12,10 +12,12 @@ namespace BikeSite.Data
     public class BikeDbContext : DbContext
     {
         public DbSet<AppUser> AppUsers { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<Rating> Ratings { get; set; }
         public DbSet<Route> Routes { get; set; }
-        public DbSet<FavRoute> FavRoute { get; set; }
+        public DbSet<FavRoute> FavRoutes { get; set; }
+        /*
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet <Rating> Ratings { get; set; }
+        */
 
         public BikeDbContext(DbContextOptions<BikeDbContext> options) : base(options)
         {
@@ -60,7 +62,13 @@ namespace BikeSite.Data
                 entity.Property(e => e.Name);
                 entity.Property(e => e.Geometry);
                 entity.Property(e => e.Description);
+                entity.Property(e => e.Asphalt);
+                entity.Property(e => e.Cycle);
+                entity.Property(e => e.Forest);
+                entity.Property(e => e.Other);
+                entity.Property(e => e.Rest);
                 entity.Property(e => e.Type);
+                entity.Property(e => e.Difficulty);
                 entity.Property(e => e.Length);
                 entity.Property(e => e.Date);
 
@@ -75,25 +83,6 @@ namespace BikeSite.Data
                     Length = 100,
                     Date = DateTime.Now,
                 });
-            });
-
-            modelBuilder.Entity<Comment>(entity =>
-            {
-                entity.HasKey(e => e.CommentId);
-                entity.Property(e => e.RouteId);
-                entity.Property(e => e.UserId);
-                entity.Property(e => e.Content).HasMaxLength(500);
-                entity.Property(e => e.Date);
-            });
-
-            modelBuilder.Entity<Rating>(entity =>
-            {
-                entity.HasKey(e => e.RatingId);
-                entity.Property(e => e.RatingId);
-                entity.Property(e => e.RouteId);
-                entity.Property(e => e.UserId);
-                entity.Property(e => e.Value);
-                entity.Property(e => e.Date);
             });
 
             modelBuilder.Entity<FavRoute>(entity =>

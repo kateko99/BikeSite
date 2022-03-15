@@ -7,40 +7,42 @@
     </div>
     <div class="panel">
         <ul class="tab">
-            <li class="tab__li tab__active"><a class="tab__header" href="#tab1">Szukaj</a></li>
-            <li class="tab__li"><a class="tab__header" href="#tab2">Dodaj</a></li>
-            <li class="tab__li"><a class="tab__header" href="#tab3">Trasa</a></li>
+            <li class="tab__li tab__active" id="tab_li1"><a class="tab__header" href="#tab1">Szukaj</a></li>
+            <li class="tab__li" id="tab_li2"><a class="tab__header" href="#tab2">Dodaj</a></li>
+            <li class="tab__li" id="tab_li3"><a class="tab__header" href="#tab3">Trasa</a></li>
         </ul>
         <div class="tab__panel tab__active" id="tab1">
             <div class="search">
                 <h3 class="panel__header">Szukaj trasy</h3>
-                <form>
+                <form id="search_form" method="post">
                     <label class="search__header">Długość: </label></br>
                     <div class="search__options">
-                        <button class="panel__button" id="len" value="length-1">
-                            <30km
-                        </button> <button class="panel__button" id="len" value="length-2">
-                            31-50 km
-                        </button>
-                        <button class="panel__button" id="len" value="length-3">51-80 km</button>
-                        <button class="panel__button" id="len" value="length-4">81-100 km</button>
-                        <button class="panel__button" id="len" value="length-5">>100 km</button></br>
+                        <select class="search__select" name="search_len" id="search_len" multiple>
+                            <option value="len1">0-10 km</option>
+                            <option value="len2">10-30 km</option>
+                            <option value="len3">30-60 km</option>
+                            <option value="len4">+60 km</option>
+                        </select>
                     </div>
                     <label class="search__header">Poziom trudności: </label></br>
                     <div class="search__options">
-                        <button class="panel__button">Łatwa</button>
-                        <button class="panel__button">Średnia</button>
-                        <button class="panel__button">Trudna</button></br>
+                        <select class="search__select" name="search_dif" id="search_dif" multiple>
+                            <option value="easy">Łatwa</option>
+                            <option value="medium">Średnia</option>
+                            <option value="hard">Trudna</option>
+                        </select>
                     </div>
                     <label class="search__header">Nawierzchnia: </label></br>
                     <div class="search__options">
-                        <button class="panel__button">Asfalt</button>
-                        <button class="panel__button">Leśne ścieżki</button>
-                        <button class="panel__button">Mieszana</button>
+                        <select class="search__select" name="search_pav" id="search_pav" multiple>
+                            <option value="asphalt">Asfalt</option>
+                            <option value="forest">Leśna</option>
+                            <option value="mix">Mieszana</option>
+                        </select>
                     </div>
                     <div class="search_options search__options--submit">
                         <img class="search__img" src="img/compass.png">
-                        <button class="panel__button panel__button--submit">Szukaj</button>
+                        <button class="panel__button panel__button--submit" id="search_submit" type="submit">Szukaj</button>
                     </div>
                 </form>
             </div>
@@ -48,25 +50,48 @@
         <div class="tab__panel" id="tab2">
             <div class="search">
                 <h3 class="panel__header">Dodaj trasę</h3>
-
                 <div class="draw__start">
-                    <button class="panel__button panel__button--draw">Rysuj</button>
-                    <h4 class="panel__length">Długość trasy: </h4>
+                    <div class="draw__desc">
+                        <p>
+                            Po kliknięciu przycisku rysowania, po lewej stronie pojawi się przybornik.
+                            Po zakończeniu trasy, naciśnij "Finish". Nazwa trasy jest obowiązkowa.
+                        </p>
+                    </div>
+                    <div>
+                        <button class="panel__button panel__button--draw">Rysuj</button>
+                        <h4 class="panel__length">Długość trasy: </h4>
+                    </div>
                 </div>
                 <form id="form_route">
                     <div class="draw__form">
                         <label class="draw__label">Nazwa</label>
-                        <input class="draw__input" id="route_name" name="name">
+                        <input class="draw__input" id="name" name="name">
                     </div>
                     <div class="draw__form">
                         <label class="draw__label">Opis</label>
                         <textarea class="draw__text" id="description" name="description" rows="5" , columns="80"></textarea>
+                        <div></div>
+                        <div>
+                            <input type="radio" id="easy" name="difficulty" value="easy"
+                                   checked>
+                            <label for="easy" class="label">Łatwa</label>
+                            <input type="radio" id="medium" name="difficulty" value="medium"
+                                   checked>
+                            <label for="medium" class="label">Średnia</label>
+                            <input type="radio" id="hard" name="difficulty" value="hard"
+                                   checked>
+                            <label for="hard" class="label">Trudna</label>
+                        </div>
                     </div>
                     <div class="draw__submit">
-                        <input type="checkbox" name="valid_ninja"> Dodaj trasę do ulubionych
-                        <button type="submit" class="panel__button panel__button--save">Zapisz</button>
-                        @if (!User.Identity.IsAuthenticated)
+                        <input id="fav_route" type="checkbox" name="fav_route"><p class="draw__add">Dodaj trasę do ulubionych</p>
+                        @if (User.Identity.IsAuthenticated)
                         {
+                            <button type="submit" class="panel__button panel__button--save">Zapisz</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="panel__button panel__button--save" disabled>Zapisz</button>
                             <h4 style="color: red">Aby zapisać trasę, musisz być zalogowany.</h4>
                         }
                     </div>
@@ -77,12 +102,47 @@
             <div class="search">
                 <h3 class="panel__header">Szczegóły trasy</h3>
                 <div>
-                    <h3 class="search__header">Długość trasy: </h3>
-                    <h3 class="search__header">Użytkownik: </h3>
-                    <h3 class="search__header">Przewyższenia: </h3>
-                    <h3 class="search__header">Typy nawierzchni: </h3>
-                    <h3 class="search__header">Opis:</h3>
-                    <h3 class="search__header">Komentarze:</h3>
+                    <h3 class="search__header search__header--details">Nazwa: </h3><p class="panel__text" id="route_name"></p><br>
+                    <h3 class="search__header search__header--details">Długość trasy:</h3><p class="panel__text" id="route_length"></p><br>
+                    <h3 class="search__header search__header--details" id="user_header">Użytkownik: </h3><p class="panel__text" id="route_user"></p><br id="user_space">
+                    <h3 class="search__header search__header--details">Poziom trudności: </h3><p class="panel__text" id="route_elevation"></p><br>
+                    <h3 class="search__header search__header--details">Opis:</h3><p class="panel__text" id="route_description"></p><br>
+                    <h3 class="search__header search__header--details">Nawierzchnia:</h3>
+                    <div class="bar">
+                        <div class="bar__asphalt" id="asphalt">
+                            <p class="percent" id="asphalt_value"></p>
+                        </div>
+                        <div class="bar__cycle" id="cycle">
+                            <p class="percent" id="cycle_value"></p>
+                        </div>
+                        <div class="bar__forest" id="forest">
+                            <p class="percent" id="forest_value"></p>
+                        </div>
+                        <div class="bar__other" id="other">
+                            <p class="percent" id="other_value"></p>
+                        </div>
+                        <div class="bar__rest" id="rest">
+                            <p class="percent" id="rest_value"></p>
+                        </div>
+                    </div>
+
+                    <div class="bar__description">
+                        <div class="bar__legend bar__legend--asphalt"></div>
+                        <p>Asfalt: </p>
+                        <p id="asphalt_desc">50%</p>
+                        <div class="bar__legend bar__legend--cycle"></div>
+                        <p>Ścieżki rowerowe: </p>
+                        <p id="cycle_desc">20%</p>
+                        <div class="bar__legend bar__legend--forest"></div>
+                        <p>Ścieżki leśne: </p>
+                        <p id="forest_desc">10%</p>
+                        <div class="bar__legend bar__legend--other"></div>
+                        <p>Inne: </p>
+                        <p id="other_desc">10%</p>
+                        <div class="bar__legend bar__legend--rest"></div>
+                        <p>Niezdefiniowane: </p>
+                        <p id="rest_desc">10%</p>
+                    </div>
                 </div>
 
             </div>
@@ -92,3 +152,5 @@
 <script type="text/javascript" src="~/js/map.js"></script>
 <script type="text/javascript" src="~/js/panel.js"></script>
 <script type="text/javascript" src="~/js/drawing.js"></script>
+<script type="text/javascript" src="~/js/search.js"></script>
+<script type="text/javascript" src="~/js/login.js"></script>

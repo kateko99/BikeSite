@@ -74,19 +74,42 @@ namespace BikeSite.Services
 
         internal Route AddNewRoute(Route route)  //tu dodać argumenty
         {
-            var new_route = new Route();
             int max_id = _context.Routes.Max(x => x.RouteId);
-            new_route.RouteId = max_id + 1;
-            new_route.Name = route.Name;
-            new_route.Geometry = route.Geometry;
-            new_route.Description = route.Description;
-            new_route.Date = route.Date;
-            new_route.Type = "type";
+            route.RouteId = max_id + 1;
+            var entity = _context.Routes.Add(route);
 
-            var entity = _context.Routes.Add(new_route);
             _context.SaveChanges();
             return entity.Entity;
         }
+
+        internal Route AddNewFavRoute(Route route, string user_id)
+        {
+            int max_id = _context.Routes.Max(x => x.RouteId);
+            route.RouteId = max_id + 1;
+            FavRoute fav = new FavRoute();
+            fav.UserId = user_id;
+            fav.RouteId = max_id + 1;
+            var entity_fav = _context.FavRoutes.Add(fav);
+            var entity = _context.Routes.Add(route);
+
+            _context.SaveChanges();
+            return entity.Entity;
+        }
+
+        internal List<Route> FindRoutes(double min, double max, string dif, string type)
+        {
+            IEnumerable<Route> routes_result = from route in _context.Routes
+                                    where route.Length >= min
+                                    where route.Length < max
+                                    where route.Difficulty == dif
+                                    where route.Type == type
+                                    select route;
+
+            List<Route> routes_list = routes_result.ToList();
+            return routes_list;
+        }
+
+       
     }
     public static class Extensions
     {

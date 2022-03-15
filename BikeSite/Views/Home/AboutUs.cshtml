@@ -1,6 +1,50 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-}
-<h1 class="header">O aplikacji</h1>
+<div class="content">
+    <div class="content__log">
+        <h2 class="info__header info__header--first">O aplikacji</h2>
+        <p class="info__text">
+            Aplikacja przeznaczona jest dla rowerzystów, planujących wycieczki rowerowe na terenie Wyżyny
+            Krakowsko-Częstochowskiej. Na podstawie narysowanej trasy, wyliczana jest nawierzchnia. Dane z dróg
+            pochodzą z otwartego źródła dannych OpenStreetMap. Oprócz dróg, mapa dostarcza informacji na temat
+            ciekawych miejsc i zabytków, znajdujących się w pobliżu - wszystkie dane pochodzą również z
+            OpenStreetMap.
+        </p>
+        <h3 class="info__header">Wyszukiwanie trasy</h3>
+        <p class="info__text">
+            W podstawowym panelu aplikacji dostępna jest wyszukiwarka dróg, w której wyróżnione zostały
+            trzy kategorie:
+        </p>
+        <ul class="info__ul">
+            <li class="info__list">
+                <span class="info__route">Trasa asfaltowa</span> - trasa, w której droga zawiera min. 90% nawierzchni asfaltowej.
+                <div class="info__gallery">
+                    <img class="info__photo" src="/img/roads/trunk.jpg" alt="Droga asfaltowa">
+                    <img class="info__photo" src="/img/roads/secondary.jpg" alt="Droga asfaltowa">
+                    <img class="info__photo" src="/img/roads/tertiary.jpg" alt="Droga asfaltowa">
+                    <img class="info__photo" src="/img/roads/residential.jpg" alt="Droga asfaltowa">
+                    <p class="info__annotation">Przykładowe drogi.</br> Źródło: <a href="https://wiki.openstreetmap.org/wiki/Key:highway" target="_blank">OpenStreetMap</a></p>
+                </div>
+            </li>
+            <li class="info__list">
+                <span class="info__route">Trasa leśna</span> - trasa, w której droga zawiera min. 90% nawierzchni leśnej.
+                <div class="info__gallery">
+                    <img class="info__photo" src="/img/roads/track.jpg" alt="Droga leśna">
+                    <img class="info__photo" src="/img/roads/track2.jpg" alt="Droga leśna">
+                    <img class="info__photo" src="/img/roads/track3.jpg" alt="Droga leśna">
+                    <img class="info__photo" src="/img/roads/path.jpg" alt="Droga leśna">
+                    <p class="info__annotation">Przykładowe drogi.</br>Źródło: <a href="https://wiki.openstreetmap.org/wiki/Key:highway" target="_blank">OpenStreetMap</a></p>
+                </div>
+            </li>
+            <li class="info__list"><span class="info__route">Trasa mieszana</span> - pozostałe trasy</li>
+        </ul>
+
+        <h3 class="info__header">Dodawanie trasy</h3>
+        <p class="info__text">Po wybraniu odpowiedniej zakładki, ukazuje się menu rysowania. Trasę zaznaczamy, dociągając do odpowiednich wierzchołków. Przybornik po lewej stronie mapy pozwala na edytowanie i modyfikację utworzonej trasy. Następnie należy wypełnić informacje: nazwę, opis trasy, poziom trudności, ewentualne dodanie do ulubionych i zatwierdzić swój wybór. Po pomyślnym przebiegu procedury, trasa zostanie dodana, a po prawej stronie pojawi się zakładka z jej szczegółami. </p>
+        <img class="info__photo info__photo--add" src="/img/add_route.png">
+        <h3 class="info__header">Szczegóły trasy</h3>
+        <p class="info__text">Po dodaniu trasy lub kliknięciu na wyszukaną trasę, wyświetlane są szczegóły. Na pasku wyświetlona jest nawierzchnia trasy. Kategoria "Niezdefiniowana" obejmuje te odcinki, które nie zostały dociągnięte do dróg na mapie i znajdują się poza oficjalnymi drogami.</p>
+        <img class="info__photo info__photo--add" src="/img/description.png" alt="Zakładka ze szczegółami trasy">
+    </div>
+</div>

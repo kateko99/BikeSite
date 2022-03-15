@@ -85,66 +85,17 @@ namespace BikeSite.Data
                         });
                 });
 
-            modelBuilder.Entity("BikeSite.Models.Comment", b =>
-                {
-                    b.Property<int>("CommentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Content")
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("RouteId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("CommentId");
-
-                    b.ToTable("Comments");
-                });
-
             modelBuilder.Entity("BikeSite.Models.FavRoute", b =>
                 {
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
 
                     b.Property<int>("RouteId")
                         .HasColumnType("integer");
 
                     b.HasKey("UserId", "RouteId");
 
-                    b.ToTable("FavRoute");
-                });
-
-            modelBuilder.Entity("BikeSite.Models.Rating", b =>
-                {
-                    b.Property<int>("RatingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("RouteId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Value")
-                        .HasColumnType("integer");
-
-                    b.HasKey("RatingId");
-
-                    b.ToTable("Ratings");
+                    b.ToTable("FavRoutes");
                 });
 
             modelBuilder.Entity("BikeSite.Models.Route", b =>
@@ -154,11 +105,23 @@ namespace BikeSite.Data
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("Asphalt")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Cycle")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
+
+                    b.Property<string>("Difficulty")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Forest")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Geometry")
                         .IsRequired()
@@ -170,6 +133,12 @@ namespace BikeSite.Data
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Other")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Rest")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Type")
                         .HasColumnType("text");
@@ -185,11 +154,16 @@ namespace BikeSite.Data
                         new
                         {
                             RouteId = 2,
-                            Date = new DateTime(2021, 12, 29, 18, 21, 10, 856, DateTimeKind.Local).AddTicks(3436),
+                            Asphalt = 0,
+                            Cycle = 0,
+                            Date = new DateTime(2022, 2, 10, 22, 40, 36, 989, DateTimeKind.Local).AddTicks(9026),
                             Description = "opis trasy",
+                            Forest = 0,
                             Geometry = "geometria startowa",
                             Length = 100.0,
                             Name = "pierwsza trasa",
+                            Other = 0,
+                            Rest = 0,
                             Type = "leśna",
                             UserId = 2
                         });
